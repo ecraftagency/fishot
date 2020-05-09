@@ -1,0 +1,104 @@
+
+jackpot.png
+size: 2048,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+10
+  rotate: false
+  xy: 1204, 697
+  size: 228, 189
+  orig: 228, 189
+  offset: 0, 0
+  index: -1
+9
+  rotate: false
+  xy: 288, 194
+  size: 228, 190
+  orig: 228, 190
+  offset: 0, 0
+  index: -1
+a
+  rotate: false
+  xy: 974, 696
+  size: 228, 190
+  orig: 228, 190
+  offset: 0, 0
+  index: -1
+bg
+  rotate: false
+  xy: 2, 386
+  size: 970, 500
+  orig: 970, 500
+  offset: 0, 0
+  index: -1
+carp
+  rotate: false
+  xy: 747, 195
+  size: 208, 189
+  orig: 208, 189
+  offset: 0, 0
+  index: -1
+coin
+  rotate: false
+  xy: 1836, 696
+  size: 189, 190
+  orig: 189, 190
+  offset: 0, 0
+  index: -1
+coin-bubble
+  rotate: false
+  xy: 974, 336
+  size: 166, 166
+  orig: 166, 166
+  offset: 0, 0
+  index: -1
+ingot
+  rotate: false
+  xy: 1434, 697
+  size: 208, 189
+  orig: 208, 189
+  offset: 0, 0
+  index: -1
+j
+  rotate: false
+  xy: 232, 3
+  size: 227, 189
+  orig: 227, 189
+  offset: 0, 0
+  index: -1
+k
+  rotate: false
+  xy: 974, 504
+  size: 227, 190
+  orig: 227, 190
+  offset: 0, 0
+  index: -1
+lamp
+  rotate: false
+  xy: 2, 194
+  size: 284, 190
+  orig: 284, 190
+  offset: 0, 0
+  index: -1
+orange
+  rotate: false
+  xy: 518, 195
+  size: 227, 189
+  orig: 227, 189
+  offset: 0, 0
+  index: -1
+q
+  rotate: false
+  xy: 2, 2
+  size: 228, 190
+  orig: 228, 190
+  offset: 0, 0
+  index: -1
+yinyang
+  rotate: false
+  xy: 1644, 696
+  size: 190, 190
+  orig: 190, 190
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,948 @@
+syntax = "proto2";
+package proto.message;
+option java_outer_classname="InGameMessageFactory";
+option java_package ="proto.message";
+
+enum TypeBetMode{
+    TYPE_TIME_BET = 1;
+    TYPE_POINT_BET = 2;
+}
+
+enum InGameResultCode{   
+    JOIN_BOARD_SUCCESS_PLAY = 1;
+    JOIN_BOARD_SUCCESS_VIEW = 2;
+    JOIN_GAME_SUCCESS = 3;   
+    JOIN_ROOM_SUCCESS = 4;
+    SET_BET_MONEY_SUCCESS = 5;
+    SET_MAX_PLAYER_SUCCESS = 6;
+    SOLO_RECEIVER_ACCEPT = 7;
+    USE_ITEM_SUCCESS = 8;
+    UDP_ESTABLISH_SUCCESS = 9;
+    JOIN_BOARD_FAIL_PASSWORD = -1;
+    JOIN_BOARD_FAIL_MONEY = -2;
+    JOIN_BOARD_ERROR = -3;
+    JOIN_GAME_FAIL = -4;
+    JOIN_ROOM_FAIL_MONEY = -5;
+    JOIN_ROOM_FAIL_ERROR = -6;
+    SET_BET_MONEY_FAIL = -7;
+    SET_MAX_PLAYER_FAIL = -8;
+    JOIN_BOARD_FAIL_FULL = -9;
+    SOLO_DENY_RECEIVER_BUSY = -10;
+    SOLO_DENY_RECEIVER_OFFLINE = -11;
+    SOLO_DENY_RECEIVER_MONEY = -12;
+    SOLO_DENY_SENDER_MONEY = -13;
+    USE_ITEM_FAILED_MONEY = -14;
+    USE_ITEM_FAILED_ITEM = -15;
+    USE_ITEM_FAILED_USER = -16;
+    SOLO_DENY_SENDER_COOL_DOWN = -17;
+    SOLO_DENY_SENDER_ABORT = -18;
+    JOIN_BOARD_FAIL_SOLO = -19;
+    SOLO_DENY_RECEIVER_ABORT = -20;
+    SOLO_DENY_MAINTAIN = -21;
+    USE_ITEM_FAILED_MAINTAIN = -22;
+    CREATE_BOARD_SUCCESS = -23;
+    CREATE_BOARD_FAIL = -24;
+    CREATE_BOARD_FAIL_MONEY = -25;
+    CREATE_BOARD_FAIL_CHANNEL = -26;
+    USE_ITEM_FAILED_ALREADY_USED = -27;
+    USE_ITEM_FAILED_NO_ITEM = -28;
+    UDP_ESTABLISH_FAIL = -29;
+    USE_ITEM_FAILED_BLOCKED = -30;
+}
+
+enum ListType{
+    PENDING_LIST = 1;
+    SWIMMING_LIST = 2;
+    BOSSES_LIST = 3;
+}
+
+enum InGameCommand{  
+    INGAME_GET_GAME_LIST_REQUEST = 1;
+    INGAME_GET_GAME_LIST_RESPONSE = 2;
+    INGAME_JOIN_GAME_REQUEST = 3;
+    INGAME_JOIN_GAME_RESPONSE = 4;
+    INGAME_JOIN_ROOM_REQUEST = 5;
+    INGAME_JOIN_ROOM_RESPONSE = 6;
+    INGAME_JOIN_BOARD_REQUEST = 7;
+    INGAME_JOIN_BOARD_RESPONSE = 8;  
+    INGAME_BOARD_INFO_REQUEST = 11;
+    INGAME_BOARD_INFO_RESPONSE = 12;
+    INGAME_START_GAME_REQUEST = 13;
+    INGAME_START_GAME_RESPONSE = 14;  
+    INGAME_PLAYER_READY_REQUEST = 15;
+    INGAME_PLAYER_READY_RESPONSE = 16;
+    INGAME_SET_BET_MONEY_REQUEST = 17;
+    INGAME_SET_BET_MONEY_RESPONSE = 18;
+    INGAME_SET_MAX_PLAYER_REQUEST = 19;
+    INGAME_SET_MAX_PLAYER_RESPONSE = 20;
+    INGAME_GET_HORDE_INFOR_RESPONSE = 21;
+    INGAME_FIRE_REQUEST = 22;
+    INGAME_FIRE_RESPONSE= 23;
+    INGAME_LEAVE_BOARD_REQUEST = 24;
+    INGAME_PLAYER_LEAVE_BOARD = 25;     /*cai nay de broadcast cho board*/
+    INGAME_LEAVE_BOARD_RESPONSE = 26;
+    INGAME_CHANGE_OWNER_RESPONSE = 27;
+    INGAME_LEAVE_ROOM_REQUEST = 28;
+    INGAME_LEAVE_ROOM_RESPONSE = 29;
+    INGAME_LEAVE_GAME_REQUEST = 30;
+    INGAME_LEAVE_GAME_RESPONSE = 31;
+    INGAME_OPEN_FIRE_REQUEST = 32;
+    INGAME_OUT_OF_AMMO = 33;
+    INGAME_OPEN_FIRE_RESPONSE = 34;
+    INGAME_FINISH_GAME_REQUEST = 35;
+    INGAME_FINISH_GAME_RESPONSE = 36;
+    INGAME_CHAT_REQUEST = 37;
+    INGAME_CHAT_RESPONSE = 38;
+    INGAME_DONATE_MONEY_REQUEST = 39;
+    INGAME_DONATE_MONEY_RESPONSE = 40;
+    INGAME_USER_LEVEL_UP = 41;
+    INGAME_GUN_CHANGE_REQUEST = 42;
+    INGAME_GUN_CHANGE_REPONSE = 43;
+    INGAME_BOSS_KILL_REPONSE = 44;
+    INGAME_BOARD_STATUS_RESPONSE = 45;
+    INGAME_GET_ROOM_LIST_REQUEST = 46;
+    INGAME_GET_ROOM_LIST_RESPONSE = 47;
+    INGAME_GET_BOARD_LIST_REQUEST = 48;
+    INGAME_GET_BOARD_LIST_RESPONSE = 49;
+    INGAME_CHAT_EMO_REQUEST = 50;
+    INGAME_CHAT_EMO_RESPONSE = 51;
+    INGAME_BET_MAKE_CONFIRM_REQUEST = 52;
+    INGAME_BET_MAKE_CONFIRM_RESPONSE = 53;
+    INGAME_SOLO_REQUEST = 54;
+    INGAME_SOLO_RESPONSE = 55;
+    INGAME_USE_ITEM_REQUEST = 56;
+    INGAME_USE_ITEM_RESPONSE = 57;
+    INGAME_SOLO_ACCEPT_CONFIRM = 58;
+    INGAME_REVIVE_BOARD_REQUEST = 59;
+    INGAME_REVIVE_BOARD_RESPONSE = 60;
+    INGAME_REVIVE_BOARD_INFO_RESPONSE = 61;
+    INGAME_ROOM_MONEY_LIST_REQUEST = 62;
+    INGAME_ROOM_MONEY_LIST_RESPONSE = 63;
+    INGAME_AVAILABLE_CANNONS_LIST = 64;
+    INGAME_CREATE_BOARD_REQUEST = 65;
+    INGAME_CREATE_BOARD_RESPONSE = 66;
+    INGAME_NETWORK_TIME_RESPONSE = 67;//fake
+    INGAME_NETWORK_TIME_REQUEST = 68;
+    INGAME_ACCUMULATION_RESPONSE = 69;
+    INGAME_BOMB_OPEN_REQUEST = 70;
+    INGAME_BOMB_OPEN_RESPONSE = 71;
+    INGAME_BOMB_EXPLODE_RESPONSE = 72;
+    INGAME_UDP_ESTABLISH_REQUEST = 73;
+    INGAME_UDP_ESTABLISH_RESPONSE = 74;
+    INGAME_SKILL_RESPONSE = 75;
+    INGAME_PET_RAMPAGE_PRE_SKILL_RESPONSE = 76;
+    INGAME_PET_RAMPAGE_BEGIN_SKILL_RESPONSE = 77;
+    INGAME_PET_RAMPAGE_IN_SKILL_RESPONSE = 78;
+    INGAME_PET_RAMPAGE_END_SKILL_RESPONSE = 79;
+	INGAME_PET_RAMPAGE_SKILL_BULLET_REQUEST = 80;
+	INGAME_PET_RAMPAGE_SKILL_BULLET_RESPONSE = 81;
+	
+	INGAME_COLLECTION_ITEM_DROP_RESPONSE = 82;
+}
+
+message InGameMessage{
+    required InGameCommand command = 1;
+    optional string userID = 2;
+    optional GetGameListResponse msgGetGameListResponse = 3;
+    optional JoinGameRequest msgJoinGameRequest = 5;
+    optional JoinGameResponse msgJoinGameResponse = 6;
+    optional JoinRoomRequest msgJoinRoomRequest = 7;
+    optional JoinRoomResponse msgJoinRoomResponse = 8;
+    optional JoinBoardRequest msgJoinBoardRequest = 9;
+    optional JoinBoardResponse msgJoinBoardResponse = 10;  
+    optional StartGameResponse msgStartGameResponse = 12;
+    optional PlayerReadyRequest msgPlayerReadyRequest = 13;
+    optional PlayerReadyResponse msgPlayerReadyResponse = 14;
+    optional SetBetMoneyRequest msgSetBetMoneyRequest = 15;
+    optional SetBetMoneyResponse msgSetBetMoneyResponse = 16;
+    optional SetMaxPlayerRequest msgSetMaxPlayerRequest = 17;
+    optional SetMaxPlayerResponse msgSetMaxPlayerResponse = 18;
+    optional GetBoardInforResponse msgGetBoardInforResponse = 19;
+    optional GetFishHordeInforResponse msgGetFishHordeInforResponse = 20;
+    optional FireRequest msgFireRequest = 21;
+    optional FireResponse msgFireResponse = 22;
+    optional LeaveBoardRequest msgLeaveBoardRequest = 23;
+    optional LeaveBoardResponse msgLeaveBoardResponse = 24;
+    optional ChangeOwnerResponse msgChangeOwnerResponse = 25;
+    optional PlayerLeaveBoard msgPlayerLeaveBoard = 26;
+    optional LeaveRoomResponse msgLeaveRoomResponse = 27;
+    optional LeaveGameResponse msgLeaveGameResponse = 28;
+    optional OpenFireRequest msgOpenFireRequest = 29;
+    optional OutOfAmmoResponse msgOutOfAmmoResponse = 30;
+    optional OpenFireResponse msgOpenFireResponse = 31;
+    optional FinishGameRequest msgFinishGameRequest = 32;
+    optional FinishGameResponse msgFinishGameResponse = 33;
+    optional ChatRequest msgChatRequest = 34;
+    optional ChatResponse msgChatResponse = 35;
+    optional DonateMoneyResponse msgDonateMoneyResponse = 36;
+    optional GetBoardInforRequest msgGetBoarInforRequest = 39;
+    optional UserLevelUpResponse msgUserLevelUpResponse = 41;
+    optional GunChangeRequest msgGunChangeRequest = 42;
+    optional GunChangeResponse msgGunChangeResponse = 43;
+    optional BossKillResponse msgBossKillResponse = 44;
+    optional GetRoomListRequest msgGetRoomListRequest = 45;
+    optional GetRoomListResponse msgGetRoomListResponse = 46;
+    optional GetBoardListRequest msgGetBoardListRequest = 47;
+    optional GetBoardListResponse msgGetBoardListResponse = 48;
+    optional ChatEmoRequest msgChatEmoRequest = 49;
+    optional ChatEmoResponse msgChatEmoResponse = 50;
+    optional BetMakeConfirmRequest msgBetMakeConfirmRequest = 51;
+    optional BetMakeConfirmResponse    msgBetMakeConfirmResponse = 52;
+    optional SoloRequest msgSoloRequest = 53;
+    optional SoloResponse msgSoloResponse = 54;
+    optional UseItemResquest msgUseItemRequest = 55;
+    optional UseItemResponse msgUseItemResponse = 56;
+    optional SoloConfirm msgSoloConfirm = 57;
+    optional ReviveBoardRequest msgReviveBoardRequest = 59;
+    optional ReviveBoardResponse msgReviveBoardResponse = 60;
+    optional ReviveBoardInfoResponse msgReviveBoardInfoResponse = 61;
+    optional RoomMoneyListRequest msgRoomMoneyListRequest = 62;
+    optional RoomMoneyListResponse msgRoomMoneyListResponse = 63;
+    optional IngameAvailableCannonsList msgIngameAvailableCannonsList = 64;
+    optional IngameCreateBoardRequest msgIngameCreateBoardRequest = 65;
+    optional IngameCreateBoardResponse msgIngameCreateBoardResponse = 66;
+    optional int64 clienttime = 67;
+    optional IngameNetworkTime msgIngameNetworkTime = 68;
+    optional AccumulationResponse msgAccumulationResponse = 69;
+    optional OpenBombRequest msgOpenBombRequest = 70;
+    optional OpenBombResponse msgOpenBombResponse = 71;
+    optional BombExplodeResponse msgBombExplodeResponse = 72;
+    optional UdpEstablishRequest msgUdpEstablishRequest = 73;
+    optional UdpEstablishResponse msgUdpEstablishResponse = 74;
+    optional uint64    UDPInboundSeq = 75;
+    optional uint32 UdpHashCode = 76;
+    optional IngameSkillResponse msgIngameSkillResponse = 77;
+	optional IngamePetRampagePreSkillResponse msgIngamePetRampagePreSkillResponse = 78;
+	optional IngamePetRampageBeginSkillResponse msgIngamePetRampageBeginSkillResponse = 79;
+	optional IngamePetRampageInSkillResponse msgIngamePetRampageInSkillResponse = 80;
+	optional IngamePetRampageEndSkillResponse msgIngamePetRampageEndSkillResponse = 81;
+	optional IngamePetRampageSkillBulletRequest msgIngamePetRampageSkillBulletRequest = 82;
+	optional IngamePetRampageSkillBulletResponse msgIngamePetRampageSkillBulletResponse = 83;
+	optional IngameCollectionItemDropResponse msgIngameCollectionItemDropResponse = 84;
+}
+
+message DonateMoneyResponse{
+    required int32 money = 1;
+}
+
+message ChatRequest{
+    required string content = 1;
+}
+
+message ChatResponse{
+    required string userID = 1;
+    required string content = 2;
+    optional string userName = 3;
+    required int32 languageCode = 4;
+}
+
+message ChatEmoRequest{
+    required string content = 1;
+}
+
+message ChatEmoResponse{
+    required string userID = 1;
+    required string content = 2;
+    optional string userName = 3;
+}
+
+message GetGameListResponse{
+    message GameInfor{
+        required int32 gameID = 1;
+        required string gameName = 2;
+    };
+    repeated GameInfor gameInfor = 1;
+}
+
+message JoinGameRequest{
+    required int32 gameID = 1;
+}
+
+message RoomInfor {
+    required int32 roomID = 1;
+    required string roomName = 2;
+    required int32 roomType = 3;
+    optional int32 minLevel = 4;
+    optional int32 maxLevel = 5;
+    optional bool canJoin = 6;
+    optional int32 roomBullet = 7; // for bet mode
+    optional int32 minChannel = 8; // for bet mode
+    optional int32 maxChannel = 9; // for bet mode
+};
+    
+message JoinGameResponse{
+    repeated RoomInfor roomInfor = 1;
+    optional InGameResultCode result = 2;
+    optional string msg = 3;
+}
+
+message JoinRoomRequest{
+    required int32 roomID = 1;
+    required int32 roomType = 2;
+}
+
+enum BetmodeType
+{
+    TYPE_NORMAL = 1;
+    TYPE_COMPARISION = 2;
+    TYPE_LUCKY_STAR = 3;
+}
+
+message BoardInfor{
+    required int32 boardID = 1;
+    required int32 status = 2;
+    required int32 players = 3;
+    required string password = 4;
+    required int32 maxPlayer = 5;
+    optional string typeName = 6;
+    optional BetmodeType typeVal = 7;
+    optional int32 betMoney = 8;
+    optional bool canJoin = 9;
+    optional int32 betBuff = 10;
+};
+
+message JoinRoomResponse{
+    required InGameResultCode result = 1;
+    required string content = 2;
+    repeated BoardInfor boardInfor = 3;
+    optional int32 roomID = 4;
+}
+
+message JoinBoardRequest{  
+    required int32 boardID = 1; /*id = -1 --> auto join*/
+    required string password = 2 [default=" "]; /*bàn ko set password thì để khoảng trắng*/
+    optional bool hasUdp = 3;
+}
+
+message JoinBoardResponse{   
+    required InGameResultCode result = 1;
+    required string content = 2;
+    required int32 boardID = 3;
+    required string userID = 4;
+    required string userName = 5;
+    required int32 seatNumber = 6;
+    required int32 gunID = 7;
+    required int32 ammoID = 8;
+/*update 20141009*/
+    required int32 gold1 = 9;   
+    required int32 gold2 = 10;
+    required int32 gold3 = 11;
+    optional int32 level = 12;
+    optional string avatar = 13;
+    optional int32 bethost = 14;
+    optional string snsName = 15;
+    optional int32 betBullet = 16;
+    optional int32 pearl = 17;
+    optional int32 udpCode = 20;
+    optional string udpHost = 18;
+    optional int32 udpPort = 19;
+    // Pet
+    optional bool hasPet = 21;
+	// Pet skill
+	optional int32 skillType = 22;
+	optional int32 skillGold = 23;
+	optional int32 skillAccumulation = 24;
+	optional int32 skillAccumulationMax = 25;
+	optional int64 skillTimeCurrent = 26;
+	optional int64 skillTimeMax = 27;
+	optional int32 skillDuration = 28;
+	optional int32 skillCannonId = 29;
+	optional int32 petLevel = 30;
+	optional float skillAccBuff = 31; 
+	repeated int64 skillTargetFish = 32;
+}
+
+message GetBoardInforRequest{
+    required int32 boardID = 1;
+    optional int32 gameId = 2;
+}
+
+message GetBoardInforResponse{
+    required int32 boardID = 3;
+    required string ownerID = 4;
+    required int32 betMoney = 5;
+    required int32 currentTime = 6; /* nếu value là 0 nghĩa là game chưa start*/
+    message BoardPlayerInfor{
+        required string userID = 1;
+        required string username = 2;    
+        required int32 seatNumber = 3;
+        required int32 gunID = 4;
+        required int32 ammoID = 5;
+        required int32 gold1 = 6;   
+        required int32 gold2 = 7;
+        required int32 gold3 = 8;
+        required int32 level = 9;
+        required string avatar = 10;
+        // for bet mode
+        optional int32 status = 11;
+        optional int32 bmRank = 12;
+        optional int32 bmReward = 13;
+        // in-game items
+        optional int32 roseAmount = 14;
+        optional int32 roseBonusAt = 15;
+        optional int32 stunToSecond = 16;
+        optional int32 soloSendAt = 17;
+        optional int32 soloReceiveAt = 18;
+        optional string snsName = 19;
+        // Pet
+        optional bool hasPet = 20;
+		// Pet skill
+		optional int32 skillType = 21;
+		optional int32 skillGold = 22;
+		optional int32 skillAccumulation = 23;
+		optional int32 skillAccumulationMax = 24;
+		optional int64 skillTimeCurrent = 25;
+		optional int64 skillTimeMax = 26;
+		optional int32 skillDuration = 27;
+		optional int32 skillCannonId = 28;
+		optional int32 petLevel = 29;
+		optional float skillAccBuff = 30;
+		repeated int64 skillTargetFish = 31;
+    }
+    repeated BoardPlayerInfor boardPlayerInfor = 7;
+    optional int32 boardStatus = 8;
+    optional int32 changeAt = 9;
+    optional int32 duration = 10;
+
+    optional string typeName = 11;
+    optional BetmodeType typeVal = 12;
+    optional bool canJoin = 13;
+    optional int32 roomID = 14;
+}
+
+message IngameItemInfo{
+    required string userID = 1;
+    optional int32 roseAmount = 2;
+    optional int32 roseBonusAt = 3;
+    optional int32 stunToSecond = 4;
+    optional int32 soloSendAt = 5;
+    optional int32 soloReceiveAt = 6;
+}
+
+message GetFishHordeInforResponse{
+    required ListType type = 1;
+    required int32 timeTicker = 2;
+    message FishHordeInfor{
+        required int64 id = 1;
+        required int32 fishID = 2;
+        required int32 fishAmount = 3;
+        required int32 speed = 4;
+        required int32 radius = 5;
+        required int32 appearSecond = 6;
+        required int32 orbitID = 7;
+        optional int32 accumulateType = 8;
+        optional float originalValue = 9;
+        optional float currentValue = 10;
+        message OrbitTransform{
+            optional int32 transform = 1;
+            repeated float params = 2;
+            optional int32 center = 3;
+        }
+        optional OrbitTransform orbitTrans = 11;
+    }
+    repeated FishHordeInfor fishHordeInfor = 3; 
+    optional int64 dtFromBegin = 4;
+    repeated IngameItemInfo itemInfos = 5;
+}
+
+message StartGameResponse{
+    required int32 gameStatus = 1;
+}
+
+message PlayerReadyRequest{
+    required bool readyStatus = 1;
+}
+
+message PlayerReadyResponse{
+    required string userID = 1;
+    required bool readyStatus = 2;
+}
+
+message SetBetMoneyRequest{
+    required int32 value = 1;
+}
+
+message SetBetMoneyResponse{
+    required InGameResultCode result = 1;
+    required int32 value = 2;
+}
+
+message SetMaxPlayerRequest{   
+    required int32 maxPlayer = 1;
+}
+
+message SetMaxPlayerResponse{
+    required InGameResultCode result = 1;
+    required int32 maxPlayer = 2;
+}
+
+message FireRequest{
+    required int64 hordeID = 1;
+    required int32 fishAmount = 2;
+    required int64 bulletID = 3;
+    optional int64 time = 4;
+}
+
+message FireResponse{   
+    required string userID = 2;
+    required int64 hordeID = 3;
+    required int32 amountDead = 4;
+    required int32 reward = 5;
+    optional int32 currentExp = 6;
+    optional int32 accumulateType = 7;
+    optional float originalValue = 8;
+    optional float currentValue = 9;
+    optional int32 currentGold = 10;
+    optional int32 unlockGold = 11;
+    optional bool isUnlockGold = 12;
+    optional int64 bulletID = 13;
+    optional int32 accumulateGoldLock = 14;
+    optional int32 accumulateGoldUnlock = 15;
+    // in-game items
+    optional int32 roseAmount = 16;
+    optional int32 roseBonusAt = 17;
+    optional int32 stunToSecond = 18;
+    optional int32 soloSendAt = 19;
+    optional int32 soloReceiveAt = 20;
+    optional int32 pearl = 21;
+    optional int32 pearlTotal = 22;
+    optional int64 reqTime = 23;
+    //accumulate ticket
+    optional int32 accumulateGoldForTiket = 24;
+    optional int32 goldBuff = 25;
+    optional bool resetAccumulateGoldForTiket = 26;
+    message DeadFish
+    {
+        optional int64 hordeID = 1;
+        optional int32 amountDead = 2;
+        optional int32 reward = 3;
+        optional int32 goldBuff = 4;
+    }
+    repeated DeadFish fishes = 27;
+	optional int32 goldSkillBuff = 28;
+
+}
+/*20140911*/
+message OpenFireRequest{ /*client dung, server broadcast*/
+    required string userID = 1;
+    required int32 x = 2;
+    required int32 y = 3;
+    required int32 value = 4 [default = 1];   
+    required int64 bulletID = 5; /*chỉ server dùng*/
+	optional int32 bulletType = 6; /*0 là binh thuong, 1 là freebullet*/
+	optional int32 bulletSkill = 7; /*0: normal, 1: jump*/
+}
+
+message OpenFireResponse{
+    required string userID = 1;
+    required int32 x = 2;
+    required int32 y = 3;
+    required int32 value = 4;
+    optional int32 currentExp = 5;
+    optional int64 bulletID = 6;
+    optional int32 currentGold = 7;
+    optional int32 unlockGold = 8;
+	optional int32 bulletType = 9; /*0 là binh thuong, 1 là freebullet*/
+	optional int32 bulletSkill = 10; /*0: normal, 1: jump*/
+}
+/*end 20140911*/
+
+message FinishGameRequest{
+    required string userID = 1;
+}
+/*
+private String userID;
+    private long timeJoin;
+    private long timeLeave = 0;
+    private int expGain = 0;
+    private int levelJoin = 0;
+    private int levelLeave = 0;
+    private int moneyGain = 0;
+    private int moneyJoin = 0;
+    private int moneyLeave = 0;
+    private List<Integer> fishKilled = new ArrayList<>(); */
+message FinishGameResponse{
+    message BoardPlayerLog{
+        required string userID = 1;
+        required string userName = 2;
+        required string userAvatar = 3;
+        required int32 startExp = 4;
+        required int32 endExp = 5;
+        required int32 moneyGain = 6;
+        required int32 endMoney = 7;
+        repeated int32 fishID = 8;
+        optional int32 expGain = 9;
+        optional bool isFriend = 10;
+        optional int32 betScore = 11;
+        optional int32 freeBestDaily = 12;
+        optional int32 freeBestWeekly = 13;
+        optional int32 freeBestScore = 14;
+        optional int32 betBestDaily = 15;
+        optional int32 betBestWeekly = 16;
+        optional int32 betBestScore = 17;
+        optional string snsName = 18;
+    }
+    repeated BoardPlayerLog boardPlayerLog = 1;
+}
+
+message LeaveBoardRequest{
+    required string userID = 1;
+}
+
+message LeaveBoardResponse{
+    required string content = 1;
+    optional int32 freeTiket = 2;
+}
+
+message PlayerLeaveBoard{
+    required string userID = 1;
+    required string content = 2;
+    optional string userName = 3;
+    optional string userAvatar = 4;
+    optional int32 bethost = 5;
+    optional string snsName = 6;
+}
+
+message ChangeOwnerResponse{
+    required string newOwnerID = 1;
+    required string content = 2;
+}
+
+message LeaveRoomResponse{
+  
+}
+
+message LeaveGameResponse{
+
+}
+
+message OutOfAmmoResponse{
+    required string userID = 1;
+}
+
+message UserLevelUpResponse{
+    required string userID = 1;
+    optional int32 newLevel = 2;
+    optional int32 currentExp = 3;
+    optional int32 nextLevelExp = 4;
+}
+
+message GunChangeRequest{
+    required string userID = 1;
+    optional int32 gunID = 2;
+}
+
+message GunChangeResponse{
+    required string userID = 1;
+    optional int32 gunID = 2;
+}
+
+message BossKillResponse{
+    required string killerID = 1;
+    required int64 bossHordeID = 2;
+    message BossReward {
+        optional string userID = 1;
+        optional int32 accumulateGold = 2;
+        optional int32 reward = 3;
+        optional int32 currentExp = 4;
+    }
+    repeated BossReward bossRewards = 3;
+}
+
+message GetRoomListRequest{
+    required int32 gameID = 1;
+}
+
+message GetRoomListResponse{
+    required int32 gameID = 1;
+    repeated RoomInfor roomInfor = 2;
+}
+
+message GetBoardListRequest{
+    required int32 gameID = 1;
+    required int32 roomID = 2;
+    optional int32 pageID = 3;
+    optional int32 pageSize = 4;
+}
+
+message GetBoardListResponse{
+    required int32 gameID = 1;
+    required int32 roomID = 2;
+    optional int32 pageID = 3;
+    optional int32 pageSize = 4;
+    optional int32 maxBoard = 5;
+    repeated BoardInfor boardInfor = 6;    
+}
+
+message BetMakeConfirmRequest{
+}
+
+message BetMakeConfirmResponse{
+//just a fake to keep strategy
+}
+
+message SoloRequest{
+    required string fromUserId = 1;
+    required string toUserId = 2;
+    optional int32 betPrice = 3;
+    optional int32 betRule = 4;
+}
+
+message SoloResponse{
+    required string fromUserId = 1;
+    required string toUserId = 2;
+    optional int32 betPrice = 3;
+    optional int32 betRule = 4;
+    optional InGameResultCode result = 5;
+    optional int32 gameId = 6;
+    optional int32 roomId = 7;
+    optional int32 boardId = 8;
+    optional int32 boardBullet = 9;
+}
+
+message SoloConfirm
+{
+    required string fromUserId = 1;
+    required string toUserId = 2;
+    optional int32 gameId = 3;
+    optional int32 roomId = 4;
+    optional int32 boardId = 5;
+}
+
+message UseItemResquest{
+    required int32 itemId = 1;
+    optional string toUserId = 2;
+    repeated int64 fishes = 3;
+}
+
+message UseItemResponse{
+    required int32 itemId = 1;
+    required InGameResultCode result = 2;
+    optional string fromUserId = 3;
+    optional int32 fromUserUnlockGold = 4;
+    optional int32 fromUserTotalGold = 5;
+    optional string toUserId = 6;
+    optional int32 toUserUnlockGold = 7;
+    optional int32 toUserTotalGold = 8;
+    optional int32 toUserStunToSecond = 9;
+    optional int32 toUserItemAmount = 10;
+}
+
+enum ReviveCode
+{
+    REVIVE_CODE_SUCCESS = 1;
+    REVIVE_CODE_FAIL_EXPIRED = 2;
+} 
+
+message ReviveBoardRequest
+{
+    optional int32 gameId = 1;
+}
+
+message ReviveBoardResponse
+{
+    required ReviveCode result = 1;
+    required int32 gameID = 2;
+    required int32 roomID = 3;
+    required int32 boardID = 4;
+    required int32 betMoney = 5;
+}
+
+message ReviveBoardInfoResponse
+{
+    message ReviveBoardInfo
+    {
+        required string userid = 1;
+        required int32 point = 2;
+        required int32 bullet = 3;
+    }
+    repeated ReviveBoardInfo infor = 1;
+}
+
+message RoomMoneyListRequest
+{
+}
+
+message RoomMoneyListResponse
+{
+    repeated int32 roomMoneys = 1;
+    repeated int32 roomMoneys1 = 2;
+}
+
+message AvailableCannon
+{
+    required int32 cannonID = 1;
+    required bool available = 2;
+    required int32 money = 3;
+}
+
+message IngameAvailableCannonsList
+{
+    required int32 gameID = 1;
+    repeated AvailableCannon cannons = 2;
+}
+
+message IngameCreateBoardRequest
+{
+    required BetmodeType type = 1;
+    required int32 betMoney = 2;
+}
+
+message IngameCreateBoardResponse
+{
+    required InGameResultCode result = 1;
+    optional int32 boardID = 2;
+    optional int32 betMoney = 3;
+    optional BetmodeType type = 4;
+    optional string ownerID = 5;
+    optional int32 roomID = 6;
+}
+
+message IngameNetworkTime
+{
+    optional int32 connectiontype = 1;
+    optional int64 networkavg = 2;
+    optional int64 networkpick = 3;
+    optional int32 networkpickgrp = 4;
+    optional int32 networkpickid = 5;
+    optional int32 networkudplost = 6;
+}
+
+message Accumulation
+{
+    optional int32 id = 1;
+    optional int32 current = 2;
+    //optional int32 receive = 3;
+    repeated int32 milestones = 4;
+    repeated int32 gifts = 5;
+}
+
+message AccumulationResponse
+{
+    optional Accumulation accumulate = 1;
+}
+
+message OpenBombRequest
+{
+    required string userid = 1;
+    required int32 itemId = 2;
+}
+
+message OpenBombResponse
+{
+    required string userid = 1;
+    required int32 itemId = 2;
+    optional InGameResultCode result = 3;
+}
+
+message BombExplodeResponse
+{
+    required string userid = 1;
+    optional int32 itemID = 2;
+    optional int32 gold = 3;
+    optional int32 exp = 4;
+}
+
+message UdpEstablishRequest
+{
+    required int32 boardId = 1;
+    required int32 boardUdpCode = 2;
+}
+
+message UdpEstablishResponse
+{
+    required InGameResultCode result = 1;
+    optional int32 boardId = 2;
+    optional int32 boardUdpCode = 3;
+}
+
+enum IngameSkillType
+{
+	TYPE_NORMAL_BULLET = 0;
+    TYPE_FREE_BULLET = 1;
+	TYPE_BUFF_BULLET = 2;
+}
+
+enum IngameBulletSkillType
+{
+	TYPE_NORMAL_SKILL_BULLET = 0;
+	TYPE_JUMP_SKILL_BULLET = 1;
+}
+
+// Skill
+message IngameSkillResponse
+{
+    optional IngameSkillType skillType = 1;
+    optional bool active = 2;
+    optional int32 gold = 3;
+    optional string userId = 4;
+    optional int32 freeTime = 5;
+    optional int32 freeTimeAdd = 6;
+}
+
+message IngamePetRampagePreSkillResponse
+{
+    optional string userId = 1;
+	optional int32 accumulation = 2;
+	optional int32 accumulationMax = 3;
+}
+
+message IngamePetRampageBeginSkillResponse
+{
+    optional string userId = 1;
+	optional int32 gold = 2;
+    optional int64 skillTimeCurrent = 3;
+    optional int64 skillTimeMax = 4;
+	optional int64 skillDuration = 5;
+	optional int32 userGold = 6;
+	optional int32 cannonId = 7;
+	optional int32 accumulation = 8;
+	optional int32 accumulationMax = 9;
+	optional int32 level = 10;
+	optional float skillAccBuff = 11; 
+	optional int32 bulletSkillType = 12;
+}
+
+message IngamePetRampageInSkillResponse
+{
+    optional string userId = 1;
+	optional int32 gold = 2;
+    optional int64 skillTimeCurrent = 3;
+    optional int64 skillTimeMax = 4;
+	optional int64 skillDuration = 5;
+	optional int32 userGold = 6;
+	optional int32 cannonId = 7;
+	optional int32 level = 8;
+	optional int32 bulletSkillType = 9;
+}
+
+message IngamePetRampageEndSkillResponse
+{
+    optional string userId = 1;
+	optional int32 gold = 2;
+	optional int32 userGold = 3;
+	optional int32 accumulation = 4;
+	optional int32 accumulationMax = 5;
+}
+
+message IngamePetRampageSkillBulletRequest
+{
+    optional int32 skillType = 1;
+	repeated int64 targetedFishes = 2; //List targeted fish if skill type is buff_jump_bullet
+}
+
+message IngamePetRampageSkillBulletResponse
+{
+	optional string userID = 1;
+    optional int32 skillType = 2;
+	repeated int64 targetedFishes = 3; //List targeted fish if skill type is buff_jump_bullet
+}
+
+message IngameCollectionItemDropResponse
+{
+	optional string userId = 1;
+	optional int32 id = 2;
+	optional int32 collectionId = 3;
+	optional int32 itemId = 4;
+	optional int64 hordeID = 5;
+}

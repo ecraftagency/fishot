@@ -1,0 +1,27 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ios-moe' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireImage', '~> 3.3'
+  pod 'AlamofireObjectMapper', '~> 5.0'
+  pod 'ObjectMapper', '~> 3.4.2'
+
+  pod 'AppsFlyerFramework'
+  pod 'FBSDKCoreKit', '~> 4.30.0'
+  pod 'FBSDKLoginKit', '~> 4.30.0'
+  pod 'GoogleSignIn', '~> 4.1.1'
+
+  # Pods for ios-moe
+
+end
+
+target 'ios-moe-Test' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ios-moe-Test
+
+end

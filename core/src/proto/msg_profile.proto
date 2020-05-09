@@ -1,0 +1,1384 @@
+syntax = "proto2";
+package proto.message;
+option java_outer_classname="ProfileMessageFactory";
+option java_package ="proto.message";
+
+enum ProfileResultCode{
+    PROFILE_CLAIM_INBOX_OK = 1;
+    PROFILE_UPDATE_OK = 2;
+    PROFILE_DAILY_QUEST_RECEIVE_OK = 3;
+    PROFILE_CANNON_UNLOCK_OK = 4;
+    PROFILE_CANNON_UPGRADE_OK = 5;
+    PROFILE_CLAIM_DAILY_BONUS_OK = 6;
+    PROFILE_DAILY_BONUS_OK = 7;
+    PROFILE_CLAIM_COLLECTION_PRIZE_OK = 8;
+    PROFILE_ACCUMULATE_CLAIM_OK = 9;
+
+    PROFILE_CLAIM_INBOX_FAIL = -1;
+    PROFILE_UPDATE_FAIL = -2;
+    PROFILE_FACEBOOK_EXIST = -3;
+    PROFILE_FACEBOOK_AUTHEN_ERROR = -4;
+    PROFILE_FACEBOOK_DIFFERENT = -5;
+    PROFILE_USERNAME_INVALID = -6;
+    PROFILE_USERNAME_EXIST = -7;
+    PROFILE_USERNAME_ALREADY = -8;
+    PROFILE_FRIENDLIST_ACTION_FAILED = -9;
+    PROFILE_FRIENDLIST_TOTAL_FULL = -10;
+    PROFILE_FRIENDLIST_DAILY_FULL = -11;
+    PROFILE_FRIENDLIST_FRIEND_FULL = -12;
+    PROFILE_FRIENDLIST_FRIEND_ALREADY = -13;
+    PROFILE_DAILY_QUEST_RECEIVE_FAILED = -14;
+    PROFILE_GIFTCODE_RECEIVE_SUCCESS = -15;
+    PROFILE_GIFTCODE_RECEIVE_OUT_LIMIT = -16;
+    PROFILE_GIFTCODE_RECEIVE_NOT_AVAILABLE = -17;
+    PROFILE_GIFTCODE_RECEIVE_ALREADY_USED = -18;
+    PROFILE_CANNON_UNLOCK_FAIL_INVALID = -19;
+    PROFILE_CANNON_UNLOCK_FAIL_LEVEL = -20;
+    PROFILE_CANNON_UNLOCK_FAIL_GOLD = -21;
+    PROFILE_CANNON_UNLOCK_FAIL_PEARL = -22;
+    PROFILE_CANNON_UNLOCK_FAIL_BASE = -23;
+    PROFILE_CANNON_UPGRADE_FAIL_INVALID = -24;
+    PROFILE_CANNON_UPGRADE_FAIL_LEVEL = -25;
+    PROFILE_CANNON_UPGRADE_FAIL_GOLD = -26;
+    PROFILE_CANNON_UPGRADE_FAIL_PEARL = -27;
+    PROFILE_WHEEL_RESULT_SUCCESS = -28;
+    PROFILE_WHEEL_RESULT_OUT_TICKET = -29;
+    PROFILE_WHEEL_RESULT_FAIL = -30;
+    PROFILE_CLAIM_DAILY_BONUS_ALREADY = -31;
+    PROFILE_CLAIM_DAILY_BONUS_NO_ITEM = -32;
+    PROFILE_CLAIM_COLLECTION_PRIZE_FAIL = -33;
+    PROFILE_DONATE_SUCCESS = -34;
+    PROFILE_DONATE_LIST_FRIEND_FAIL = -35;
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL = -36;
+    PROFILE_DONATE_SEND_ITEMS_FAIL = -37;
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_SNS = -38;
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_OVER = -39;
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_ALREADY = -40;
+    PROFILE_DONATE_SEND_ITEMS_FAIL_SNS = -41;
+    PROFILE_DONATE_SEND_ITEMS_FAIL_OVER = -42;
+    PROFILE_DONATE_SEND_ITEMS_FAIL_ALREADY = -43;
+    PROFILE_DONATE_SEND_ITEMS_FAIL_NO_DATA = -44;
+    PROFILE_ACCUMULATE_CLAIM_DUP = -45;
+    PROFILE_ACCUMULATE_CLAIM_INVALID = -46;
+    //bau cua
+    PROFILE_H3_RESULT_SUCCESS = -47;
+    PROFILE_H3_RESULT_OUT_MONEY = -48;
+    PROFILE_H3_RESULT_FAIL = -49;
+}
+
+enum InboxItemType{
+    INBOX_TYPE_MONEY_UNLOCK = 1;
+    INBOX_TYPE_MONEY_LOCK = 2;
+    INBOX_TYPE_USER_EXP = 3;
+    INBOX_TYPE_SYSTEM_MESSAGE = 4;
+    INBOX_TYPE_FRIEND_MESSAGE = 5;
+    INBOX_TYPE_USER_MESSAGE = 6;
+    INBOX_TYPE_OPT_CODE = 7;
+    INBOX_TYPE_ONLINE_REWARD = 8;
+    INBOX_TYPE_UPGARDE_REWARD = 9;
+    INBOX_TYPE_PEARL = 10;
+    INBOX_TYPE_SYSTEM_REPLY = 11;
+    INBOX_TYPE_TICKET_FREE = 12;
+    INBOX_TYPE_TICKET_VIP = 13;
+    INBOX_TYPE_CASHOUT = 14; // Card, info,...
+    INBOX_TYPE_PET_PIECE = 15; // Manh ghep thu cung
+    INBOX_TYPE_INVENTORY_ITEM = 16;
+    INBOX_TYPE_INGAME_ITEM = 17;
+}
+
+enum ProfileCommand{
+    PROFILE_GET_USER_MONEY_REQUEST = 1;
+    PROFILE_GET_USER_MONEY_RESPONSE = 2;
+    PROFILE_GET_USER_PROFILE_REQUEST = 3;
+    PROFILE_GET_USER_PROFILE_RESPONSE = 4;
+    PROFILE_LEVEL_UP_RESPONSE = 5;
+    PROFILE_GET_USER_INBOX_REQUEST = 6;
+    PROFILE_GET_USER_INBOX_RESPONSE = 7;
+    PROFILE_CLAIM_INBOX_REQUEST = 8;
+    PROFILE_CLAIM_INBOX_RESPONSE = 9;
+    PROFILE_UPDATE_USER_PROFILE_FB_REQUEST = 10;
+    PROFILE_UPDATE_USER_PROFILE_FB_RESPONSE = 11;
+    PROFILE_UPDATE_USER_NAME_REQUEST = 12;
+    PROFILE_UPDATE_USER_NAME_RESPONSE = 13;
+    PROFILE_FRIEND_LIST_RAW_REQUEST = 14;
+    PROFILE_FRIEND_LIST_RAW_RESPONSE = 15;
+    PROFILE_FRIEND_LIST_DETAIL_REQUEST = 16;
+    PROFILE_FRIEND_LIST_DETAIL_RESPONSE = 17;
+    PROFILE_FRIEND_INVITATION_DETAIL_REQUEST = 18;
+    PROFILE_FRIEND_INVITATION_DETAIL_RESPONSE = 19;
+    PROFILE_FRIEND_REMOVE_REQUEST = 20;
+    PROFILE_FRIEND_REMOVE_RESPONSE = 21;
+    PROFILE_FRIEND_INVITATION_SEND_REQUEST = 22;
+    PROFILE_FRIEND_INVITATION_SEND_RESPONSE = 23;
+    PROFILE_FRIEND_INVITATION_ACCEPT_REQUEST = 24;
+    PROFILE_FRIEND_INVITATION_ACCEPT_RESPONSE = 25;
+    PROFILE_FRIEND_INVITATION_DENY_REQUEST = 26;
+    PROFILE_FRIEND_INVITATION_DENY_RESPONSE = 27;
+    PROFILE_FRIEND_SEARCH_REQUEST = 28;
+    PROFILE_FRIEND_SEARCH_RESPONSE = 29;
+    PROFILE_FRIEND_LOCK_MONEY_SEND_REQUEST = 30;
+    PROFILE_FRIEND_LOCK_MONEY_SEND_RESPONSE = 31;
+    PROFILE_FRIEND_LOCK_MONEY_RECEIVE_REQUEST = 32;
+    PROFILE_FRIEND_LOCK_MONEY_RECEIVE_RESPONSE = 33;
+    PROFILE_FRIEND_UNLOCK_MONEY_SEND_REQUEST = 34;
+    PROFILE_FRIEND_UNLOCK_MONEY_SEND_RESPONSE = 35;
+    PROFILE_FRIEND_MESSAGE_SEND_REQUEST = 36;
+    PROFILE_FRIEND_MESSAGE_SEND_RESPONSE = 37;
+    PROFILE_DAILY_QUEST_INFO_REQUEST = 38;
+    PROFILE_DAILY_QUEST_INFO_RESPONSE = 39;
+    PROFILE_DAILY_QUEST_RECEIVE_REQUEST = 40;
+    PROFILE_DAILY_QUEST_RECEIVE_RESPONSE = 41;
+    PROFILE_DAILY_SNS_FRIEND_INVITE_REQUEST = 42;
+    PROFILE_DAILY_SNS_FRIEND_INVITE_RESPONSE = 43;
+    PROFILE_GIFTCODE_REQUEST = 44;
+    PROFILE_GIFTCODE_RESPONSE = 45;
+    PROFILE_GET_INVENTORY_REQUEST = 46;
+    PROFILE_GET_INVENTORY_RESPONSE = 47;
+    PROFILE_GET_CANNON_DATA_REQUEST = 48;
+    PROFILE_GET_CANNON_DATA_RESPONSE = 49;
+    PROFILE_CANNON_UNLOCK_REQUEST = 50;
+    PROFILE_CANNON_UNLOCK_RESPONSE = 51;
+    PROFILE_CANNON_UPGRADE_REQUEST = 52;
+    PROFILE_CANNON_UPGRADE_RESPONSE = 53;
+    PROFILE_DAILY_SUPPORT_REQUEST = 54;
+    // Wheel
+    PROFILE_WHEEL_ENTER_REQUEST = 55;
+    PROFILE_WHEEL_ENTER_RESPONSE = 56;
+    PROFILE_WHEEL_LEAVE_REQUEST = 57;
+    PROFILE_WHEEL_LEAVE_RESPONSE = 58;
+    PROFILE_WHEEL_TURN_REQUEST = 59;
+    PROFILE_WHEEL_TURN_RESPONSE = 60;
+    PROFILE_WHEEL_GET_REQUEST = 61;
+    PROFILE_WHEEL_GET_RESPONSE = 62;
+    PROFILE_WHEEL_INGAME_REQUEST = 63;
+    PROFILE_WHEEL_INGAME_RESPONSE = 64;
+    PROFILE_WHEEL_CARRIER_REQUEST = 65;
+    PROFILE_WHEEL_CARRIER_RESPONSE = 66;
+    // Soccer
+    PROFILE_SOCCER_ENTER_REQUEST = 67;
+    PROFILE_SOCCER_ENTER_RESPONSE = 68;
+    PROFILE_SOCCER_TEAMS_RESPONSE = 69;
+    PROFILE_SOCCER_MATCHES_REQUEST = 70;
+    PROFILE_SOCCER_MATCHES_RESPONSE = 71;
+    PROFILE_SOCCER_BET_REQUEST = 72;
+    PROFILE_SOCCER_BET_RESPONSE = 73;
+    PROFILE_SOCCER_BET_COUNT_RESPONSE = 74;
+    PROFILE_SOCCER_RECEIVE_REQUEST = 75;
+    PROFILE_SOCCER_RECEIVE_RESPONSE = 76;
+    PROFILE_SOCCER_REDDOT_REQUEST = 77;
+    PROFILE_SOCCER_REDDOT_RESPONSE = 78;
+    // Pet
+    PROFILE_PET_INFO_REQUEST = 79;
+    PROFILE_PET_INFO_RESPONSE = 80;
+    PROFILE_PET_UPDATE_RESPONSE = 81;
+    PROFILE_PET_UNLOCK_REQUEST = 82;
+    PROFILE_PET_UNLOCK_RESPONSE = 83;
+    PROFILE_PET_GIFT_RECEIVE_REQUEST = 84;
+    PROFILE_PET_GIFT_RECEIVE_RESPONSE = 85;
+    PROFILE_PET_GIFT_ASKING_REQUEST = 86;
+    PROFILE_PET_GIFT_ASKING_RESPONSE = 87;
+
+    //client action log
+    PROFILE_CLIENT_ACTION_LOG_REQUEST = 89;
+
+    //Ads
+    PROFILE_ADS_VIEW_REQUEST = 90;
+    PROFILE_ADS_VIEW_RESPONSE = 91;
+
+    //Pet
+    PROFILE_PET_LEVELUP_RESPONSE = 92;
+
+    PROFILE_DAILY_SUPPORT_RESPONSE = 93;
+
+    //DailyBonus
+    PROFILE_DAILY_BONUS_REQUEST = 94;
+    PROFILE_DAILY_BONUS_RESPONSE = 95;
+    PROFILE_CLAIM_DAILY_BONUS_REQUEST = 96;
+    PROFILE_CLAIM_DAILY_BONUS_RESPONSE = 97;
+
+    //Collection
+    PROFILE_COLLECTION_DATA_REQUEST = 98;
+    PROFILE_COLLECTION_DATA_RESPONSE = 99;
+    PROFILE_COLLECTION_CLAIM_PRIZE_REQUEST = 100;
+    PROFILE_COLLECTION_CLAIM_PRIZE_RESPONSE = 101;
+
+    // Donate friends
+    PROFILE_DONATE_FRIEND_LIST_DETAIL_REQUEST = 102;
+    PROFILE_DONATE_FRIEND_LIST_DETAIL_RESPONSE = 103;
+    PROFILE_DONATE_RECEIVE_ITEMS_REQUEST = 104;
+    PROFILE_DONATE_RECEIVE_ITEMS_RESPONSE = 105;
+    PROFILE_DONATE_SEND_ITEMS_REQUEST = 106;
+    PROFILE_DONATE_SEND_ITEMS_RESPONSE = 107;
+    PROFILE_DONATE_CHECK_GIFT_REQUEST = 108;
+    PROFILE_DONATE_CHECK_GIFT_RESPONSE = 109;
+    PROFILE_DONATE_LIST_FRIEND_SEND_ITEMS_REQUEST = 110;
+    PROFILE_DONATE_LIST_FRIEND_SEND_ITEMS_RESPONSE = 111;
+
+    //Accumulate Promotion
+    PROFILE_ACCUMULATE_PROMOTION_REQUEST = 112;
+    PROFILE_ACCUMULATE_PROMOTION_RESPONSE = 113;
+    PROFILE_ACCUMULATE_CLAIM_REQUEST = 114;
+    PROFILE_ACCUMULATE_CLAIM_RESPONSE = 115;
+
+    //leaderboard
+    PROFILE_LEADERBOARD_REQUEST = 116;
+    PROFILE_LEADERBOARD_RESPONSE = 117;
+
+    //CollectionArchive
+    PROFILE_ARCHIVE_COLLECTION_REQUEST = 118;
+    PROFILE_ARCHIVE_COLLECTION_RESPONSE = 119;
+
+    //Ads View
+    PROFILE_ADS_INFO_REQUEST = 120;
+    PROFILE_ADS_INFO_RESPONSE = 121;
+    PROFILE_ADS_REWARD_CLAIM_REQUEST = 122;
+
+    //bau cua
+    PROFILE_H3_ENTER_REQUEST = 123;
+    PROFILE_H3_ENTER_RESPONSE = 124;
+    PROFILE_H3_LEAVE_REQUEST = 125;
+    PROFILE_H3_LEAVE_RESPONSE = 126;
+    PROFILE_H3_TURN_REQUEST = 127;
+    PROFILE_H3_TURN_RESPONSE = 128;
+}
+
+message ProfileMessage{
+    required ProfileCommand command = 1;
+    optional GetUserMoneyRequest msgGetUserMoneyRequest = 2;
+    optional GetUserMoneyResponse msgGetUserMoneyResponse = 3;
+    optional GetUserProfileRequest msgGetUserProfileRequest = 4;
+    optional GetUserProfileResponse msgGetUserProfileResponse = 5;
+    optional LevelUpResponse msgLevelUpResponse = 6;
+    optional GetUserInboxResponse msgGetUserInboxResponse = 7;
+    optional UpdateProfileFBRequest msgUpdateProfileFBRequest = 8;
+    optional UpdateProfileFBResponse msgUpdateProfileFBResponse = 9;
+    optional UpdateUserNameRequest msgUpdateUserNameRequest = 10;
+    optional UpdateUserNameResponse msgUpdateUserNameResponse = 11;
+    optional ClaimInboxRequest msgClaimInboxRequest = 12;
+    optional ClaimInboxResponse msgClaimInboxResponse = 13;
+    optional FriendListRawResponse msgFriendListRawResponse = 14;
+    optional FriendListDetailRequest msgFriendListDetailRequest = 15;
+    optional FriendListDetailResponse msgFriendListDetailResponse = 16;
+    optional FriendActionRequest msgFriendActionRequest = 17;
+    optional FriendActionResponse msgFriendActionResponse = 18;
+    optional FriendSearchRequest msgFriendSearchRequest = 19;
+    optional FriendSearchResponse msgFriendSearchResponse = 20;
+    optional FriendUnlockMoneySendRequest msgFriendUnlockMoneySendRequest = 21;
+    optional FriendUnlockMoneySendResponse msgFriendUnlockMoneySendResponse = 22;
+    optional FriendMessageSendRequest msgFriendMessageSendRequest = 23;
+    optional DailyQuestInfoResponse msgDailyQuestInfoResponse = 24;
+    optional DailyQuestReceiveRequest msgDailyQuestReceiveRequest = 25;
+    optional DailyQuestReceiveResponse msgDailyQuestReceiveResponse = 26;
+    optional DailySnsFriendInviteRequest msgDailySnsFriendInviteRequest = 27;
+    optional DailySnsFriendInviteResponse msgDailySnsFriendInviteResponse = 28;
+    optional GiftCodeRequest msgGiftCodeRequest = 29;
+    optional GiftCodeResponse msgGiftCodeResponse = 30;
+    optional GetUserInventoryResponse msgGetUserInventoryResponse = 31;
+    optional GetCannonDataResponse msgGetCannonDataResponse = 32;
+    optional CannonUnlockRequest msgCannonUnlockRequest = 33;
+    optional CannonUnlockResponse msgCannonUnlockResponse = 34;
+    optional CannonUpgradeRequest msgCannonUpgradeRequest = 35;
+    optional CannonUpgradeResponse msgCannonUpgradeResponse = 36;
+    optional int64 clienttime = 37;
+    // Wheel
+    optional WheelEnterRequest msgWheelEnterRequest = 38;
+    optional WheelEnterResponse msgWheelEnterResponse = 39;
+    optional WheelLeaveRequest msgWheelLeaveRequest = 40;
+    optional WheelLeaveResponse msgWheelLeaveResponse = 41;
+    optional WheelTurnRequest msgWheelTurnRequest = 42;
+    optional WheelTurnResponse msgWheelTurnResponse = 43;
+    optional WheelGetRequest msgWheelGetRequest = 44;
+    optional WheelGetResponse msgWheelGetResponse = 45;
+    optional WheelIngameRequest msgWheelIngameRequest = 46;     // Not used
+    optional WheelIngameResponse msgWheelIngameResponse = 47;   // Not used
+    optional WheelCarrierRequest msgWheelCarrierRequest = 48;
+    optional WheelCarrierResponse msgWheelCarrierResponse = 49;
+    // Soccer
+    optional SoccerTeamsResponse msgSoccerTeamsResponse = 50;
+    optional SoccerEnterRequest msgSoccerEnterRequest = 51;
+    optional SoccerEnterResponse msgSoccerEnterResponse = 52;
+    optional SoccerMatchesRequest msgSoccerMatchesRequest = 53;
+    optional SoccerMatchesResponse msgSoccerMatchesResponse = 54;
+    optional SoccerBetRequest msgSoccerBetRequest = 55;
+    optional SoccerBetResponse msgSoccerBetResponse = 56;
+    optional SoccerBetCountResponse msgSoccerBetCountResponse = 57;
+    optional SoccerReceiveRequest msgSoccerReceiveRequest = 58;
+    optional SoccerReceiveResponse msgSoccerReceiveResponse = 59;
+    optional SoccerReddotRequest msgSoccerReddotRequest = 60;
+    optional SoccerReddotResponse msgSoccerReddotResponse = 61;
+    // Pet
+    optional PetInfoRequest msgPetInfoRequest = 62;
+    optional PetInfoResponse msgPetInfoResponse = 63;
+    optional PetUpdateResponse msgPetUpdateResponse = 64;
+    optional PetUnlockRequest msgPetUnlockRequest = 65;
+    optional PetUnlockResponse msgPetUnlockResponse = 66;
+    optional PetGiftReceiveRequest msgPetGiftReceiveRequest = 67;
+    optional PetGiftReceiveResponse msgPetGiftReceiveResponse = 68;
+    optional PetGiftAskingResponse msgPetGiftAskingResponse = 70;
+
+    //client log
+    optional ClientActionLogRequest msgClientActionLogRequest = 71;
+
+    // Ads
+    optional AdsViewRequest msgAdsViewRequest = 72;
+    optional AdsViewResponse msgAdsViewResponse = 73;
+
+    //PetLevelUp
+    optional PetLevelUpResponse msgPetLevelUpResponse = 74;
+
+    //DailySupport
+    optional DailySupportResponse msgDailySupportResponse = 75;
+
+    //DailyBonus
+    optional DailyBonusRequest msgDailyBonusRequest = 76;
+    optional DailyBonusResponse msgDailyBonusResponse = 77;
+    optional ClaimDailyBonusRequest msgClaimDailyBonusRequest = 78;
+    optional ClaimDailyBonusResponse msgClaimDailyBonusResponse = 79;
+
+    //Collection
+    optional CollectionInfoRequest msgCollectionInfoRequest = 80;
+    optional CollectionInfoResponse msgCollectionInfoResponse = 81;
+    optional ClaimCollectionPrizeRequest msgClaimCollectionPrizeRequest = 82;
+    optional ClaimCollectionPrizeResponse msgClaimCollectionPrizeResponse = 83;
+
+    // Donate friends
+    optional DonateFriendListDetailRequest msgDonateFriendListDetailRequest = 84;
+    optional DonateFriendListDetailResponse msgDonateFriendListDetailResponse = 85;
+    optional DonateFriendReceiveItemsRequest msgDonateFriendReceiveItemsRequest = 86;
+    optional DonateFriendReceiveItemsResponse msgDonateFriendReceiveItemsResponse = 87;
+    optional DonateFriendSendItemsRequest msgDonateFriendSendItemsRequest = 88;
+    optional DonateFriendSendItemsResponse msgDonateFriendSendItemsResponse = 89;
+    optional DonateFriendCheckGiftRequest msgDonateFriendCheckGiftRequest = 90;
+    optional DonateFriendCheckGiftResponse msgDonateFriendCheckGiftResponse = 91;
+    optional DonateListFriendSendItemsRequest msgDonateListFriendSendItemsRequest = 92;
+    optional DonateListFriendSendItemsResponse msgDonateListFriendSendItemsResponse = 93;
+
+    //Accumulate Promotions
+    optional AccumulatePromotionRequest msgAccumulatePromotionRequest = 94;
+    optional AccumulatePromotionResponse msgAccumulatePromotionResponse = 95;
+    optional AccumulateClaimRequest msgAccumulateClaimRequest = 96;
+    optional AccumulateClaimResponse msgAccumulateClaimResponse = 97;
+
+    //leaderboard
+    optional LeaderBoardRequest msgLeaderBoardRequest = 98;
+    optional LeaderBoardResponse msgLeaderBoardResponse = 99;
+
+    //CollectionArchive
+    optional ArchiveCollectionRequest msgArchiveCollectionRequest = 100;
+    optional ArchiveCollectionResponse msgArchiveCollectionResponse = 101;
+
+    //Ads View
+    optional AdsInfoRequest msgAdsInfoRequest = 102;
+    optional AdsInfoResponse msgAdsInfoResponse = 103;
+    optional AdsRewardClaimRequest msgAdsRewardClaimRequest = 104;
+
+    //bau cua
+    optional H3EnterRequest msgH3EnterRequest = 105;
+    optional H3EnterResponse msgH3EnterResponse = 106;
+    optional H3LeaveRequest msgH3LeaveRequest = 107;
+    optional H3LeaveResponse msgH3LeaveResponse = 108;
+    optional H3TurnRequest msgH3TurnRequest = 109;
+    optional H3TurnResponse msgH3TurnResponse = 110;
+}
+
+//Bau Cua
+message H3EnterRequest {
+
+}
+
+message H3EnterResponse {
+    optional int32 ticketFree = 1;
+    optional int32 ticketVIP = 2;
+    optional int32 gold = 3;
+}
+
+message H3LeaveRequest {
+
+}
+
+message H3LeaveResponse {
+    optional int32 ticketFree = 1;
+    optional int32 ticketVIP = 2;
+    optional int32 gold = 3;
+}
+
+message BetCase {
+    optional uint32 cases = 1;
+    optional uint32 betMoney = 2;
+}
+
+message H3TurnRequest {
+    repeated BetCase betCases = 1;
+    optional int32 ticketFree = 2;
+    optional int32 ticketVIP = 3;
+    optional int32 gold = 4;
+}
+
+message H3TurnResponse {
+    repeated BetCase resCases = 1;
+    optional ProfileResultCode result = 2;
+    optional int32 ticketFree = 3;
+    optional int32 ticketVIP = 4;
+    optional int32 gold = 5;
+}
+
+//Ads Daily View
+
+message AdsInfoRequest {
+
+}
+
+message AdsInfoResponse {
+    required int32 max = 1;
+    optional int32 current = 2;
+}
+
+message AdsRewardClaimRequest {
+
+}
+
+//CollectionArchiveﬁ
+
+message ArchiveCollectionRequest {
+
+}
+
+message ArchiveCollectionResponse {
+    required bool available = 1;
+    optional string startDate = 2;
+    optional string endDate = 3;
+    repeated ArchiveMilestone milestones = 4;
+}
+
+message ArchiveMilestone {
+    required int32 id = 1;
+    repeated ArchiveItem archive = 2;
+    repeated ArchiveItem reward = 3;
+}
+
+message ArchiveItem {
+    required int32 id = 1;
+    optional int32 type = 2;
+    optional int32 amount = 3;
+}
+
+//Leaderboard
+
+message LeaderBoardRequest {
+
+}
+
+message LeaderBoardResponse {
+    required string openHour = 1;
+    required string closeHour = 2;
+    repeated LdbRecord records = 3;
+    optional string rule = 4;
+}
+
+message LdbRecord {
+    required string id = 1;
+    optional string name = 2;
+    optional int32 score = 3;
+}
+
+//Accumulate Promotion Message
+message AccumulateClaimRequest{
+    required int32 id = 1;
+}
+
+message AccumulateClaimResponse{
+    required ProfileResultCode result = 1;
+}
+
+message AccumulatePromotionRequest{
+
+}
+
+message AccumulatePromotionResponse{
+    required bool available = 1;
+    optional string startDate = 2;
+    optional string endDate = 3;
+    optional int32 accAmount = 4;
+    repeated AccumulateMilestones milestones = 5;
+}
+
+message AccumulateMilestones{
+    required int32 id = 1;
+    optional int32 amount = 2;
+    optional MileStoneStatus status = 3;
+    repeated AccumulateRewardItem rewardItems = 4;
+}
+
+message AccumulateRewardItem{
+    required int32 id = 1;
+    optional int32 amount = 2;
+    optional int32 type = 3;
+}
+
+enum MileStoneStatus{
+    LOCK = 1;
+    UNLOCKED = 2;
+    CLAIMED = 3;
+}
+
+message ClientActionLogRequest{
+    repeated string action = 1;
+}
+
+message UpdateUserNameRequest{
+    required string userName = 1;
+}
+
+message UpdateUserNameResponse{
+    required ProfileResultCode result = 1;
+}
+
+message UpdateProfileFBRequest{
+    required string fbID = 1;
+    required string fbToken = 2;
+    optional string fbAvatar = 3;
+    optional string fbName = 4;
+    optional int32 snsflag = 5;
+}
+
+message UpdateProfileFBResponse{
+    required ProfileResultCode result = 1;
+    optional string snsServerToken = 2;
+}
+
+message ClaimInboxRequest{
+    required int32 inboxID = 1;
+    optional string optCode = 2;
+}
+
+message ClaimInboxResponse{
+    required ProfileResultCode code = 1;
+    optional int32 inboxID = 2;
+    optional InboxObject inboxObj = 3;
+}
+
+message GetUserInboxResponse{
+    repeated InboxObject inboxObj = 1;
+    optional bool isNew = 2;
+}
+
+message InboxObject{
+    required int32 inboxID = 1;
+    optional string senderID = 2;
+    optional string senderName = 3;
+    optional int32 sendTime = 4;
+    /* item data */
+    optional int32 itemType = 5;
+    optional int32 itemAmount = 6;
+    optional string itemMessage = 7;
+    optional string senderAvatar = 8;
+    optional bool hasOpt = 9;
+    optional string url = 10;
+    optional int32 flag = 11;
+    optional int32 rewardType = 12;
+    optional int32 hour = 13;
+}
+
+message LevelUpResponse{
+    required int32 newLevel = 1;
+    required int32 goldReward = 2;
+    repeated int32 itemReward = 3;
+    optional int32 nextLevelExp = 4;
+}
+
+message GetUserProfileRequest{
+    required string userID = 1;
+}
+
+message GetUserProfileResponse{
+    required string userID = 1;
+    required string userName = 2;
+    required int32 currentLevel = 3;
+    required int32 currentExp = 4;
+    required int32 expToNextLevel = 5;
+    optional int32 gold1 = 6;
+    optional int32 gold2 = 7;
+    optional int32 gold3 = 8;
+    optional int32 paymentCount = 9;
+    optional int32 freeBestDaily = 10;
+    optional int32 freeBestWeekly = 11;
+    optional int32 freeBestScore = 12;
+    optional int32 betBestDaily = 13;
+    optional int32 betBestWeekly = 14;
+    optional int32 betBestScore = 15;
+    optional int32 charmPointDaily = 16;
+    optional int32 charmPointWeekly = 17;
+    optional int32 charmPointScore = 18;
+    optional int32 ticketCount = 19;
+    optional int32 currentTicketAccumulation = 20;
+    optional int32 maxTicketAccumulation = 21;
+}
+
+message GetUserMoneyRequest{
+    required string userID = 1;
+}
+
+message GetUserMoneyResponse{
+    required string userID = 1;
+    required int32 gold1 = 2;
+    required int32 gold2 = 3;
+    required int32 gold3 = 4;
+}
+
+message FriendListRawResponse{
+    required string userID = 1;
+    repeated string friendIDs = 2;
+    repeated string invitations = 3;
+}
+
+message FriendListDetailRequest{
+    repeated string friendIDs = 1;
+    repeated string zaloIDs = 2;
+    repeated string facebookIDs = 3;
+}
+
+message FriendListDetailResponse{
+    required string userID = 1;
+    repeated FriendDetail friendDetail = 2;
+}
+
+message FriendDetail{
+    optional string userID = 1;
+    optional string userName = 2;
+    optional string userAvatar = 3;
+    optional int32 userLevel = 4;
+    optional int32 userExp = 5;
+    optional int32 userGold = 6;
+    optional bool hasGift = 7;
+    optional bool sentGift = 8;
+    optional int32 unlockGold = 9;
+    optional string userFacebookId = 10;
+    optional string userZaloId = 11;
+    optional bool canChallenge = 12;
+    optional bool canTag = 13;
+}
+
+message FriendActionRequest{
+    required string friendID = 1;
+}
+
+message FriendActionResponse{
+    optional string userID = 1;
+    optional string friendID = 2;
+    optional ProfileResultCode result = 3;
+    optional int32 amount = 4;
+    optional string friendName = 5;
+    optional string friendAvatar = 6;
+    optional int32 friendLevel = 7;
+}
+
+message FriendSearchRequest{
+    required string template = 1;
+}
+
+message FriendSearchResponse{
+    required string userID = 1;
+    required string template = 2;
+    repeated FriendDetail friendDetail = 3;
+}
+
+message FriendUnlockMoneySendRequest{
+    required string friendID = 1;
+    required int32 amount = 2;
+    optional string message = 3;
+    optional bool hasOpt = 4;
+}
+
+message FriendUnlockMoneySendResponse{
+    required string userID = 1;
+    required string friendID = 2;
+    required int32 amount = 3;
+    required ProfileResultCode result = 4;
+    optional string optCode = 5;
+    optional int32 gold1 = 6;
+    optional int32 gold2 = 7;
+    optional int32 gold3 = 8;
+    optional string friendName = 9;
+}
+
+message FriendMessageSendRequest{
+    required string friendID = 1;
+    required string message = 2;
+}
+
+message DailyQuestObject{
+    required int32 questId = 1;
+    optional int32 status = 2;
+    optional int32 action = 3;
+    optional int32 item = 4;
+    optional int32 amount = 5;
+    optional int32 finish = 6;
+    optional int32 rewardExp = 7;
+    optional int32 rewardGold = 8;
+    optional string description = 9;
+    optional string description2 = 10;
+    optional string fileName = 11;
+    optional int32 rewardPearl = 12;
+    optional int32 rewardTicket = 13;
+}
+
+message DailyQuestInfoResponse{
+    repeated DailyQuestObject questObject = 1;
+    optional bool isNew = 2;
+    repeated int32 resetDayHour = 3;
+}
+
+message DailyQuestReceiveRequest{
+    required int32 questId = 1;
+}
+
+message DailyQuestReceiveResponse{
+    optional ProfileResultCode result = 1;
+    required DailyQuestObject questObject = 2;
+}
+
+message DailySnsFriendInviteRequest{
+    repeated string snsId = 1;
+    optional int32 snsFlag = 2;
+    repeated string fbId = 3;
+    optional bool submited = 4;
+    optional int32 requestType = 5;
+}
+
+message DailySnsFriendInviteResponse{
+    optional int32 numSuccess = 1;
+    optional int32 rewardUnit = 2;
+    optional int32 snsFlag = 3;
+    repeated string snsId = 4;
+    optional int32 dailyCount = 5;
+    optional int32 dailyMax = 6;
+    optional int32 rewardType = 7;
+}
+
+message DailySupportResponse
+{
+    optional bool isOutOfMoney = 1;
+    optional bool isInviteSNSFriend = 2;
+}
+
+message GiftCodeRequest{
+    required string code = 1;
+}
+
+message GiftCodeResponse{
+    optional ProfileResultCode result = 1;
+}
+
+message InventoryCannon{
+    required int32 id = 1;
+    optional int32 level = 2;
+}
+
+message InventorySimpleItem{
+    required int32 id = 1;
+    optional int32 amount = 2;
+}
+
+message GetUserInventoryResponse{
+    repeated InventoryCannon cannons = 1;
+    repeated InventorySimpleItem simpleItems = 2;
+}
+
+message CannonBase{
+    required int32 baseId = 1;
+    optional int32 power = 2;
+    optional int32 unlockLevel = 3;
+    optional int32 unlockGold = 4;
+    optional int32 unlockPearl = 5;
+    optional int32 unlockBase = 6;
+    optional int32 goldBonus = 7;
+}
+
+message CannonUpgrade{
+    required int32 baseId = 1;
+    optional int32 level = 2;
+    optional float hitBuff = 3;
+    optional float goldBuff = 4;
+    optional int32 upgradeNext = 5;
+    optional int32 upgradeLevel = 6;
+    optional int32 upgradeGold = 7;
+    optional int32 upgradePearl = 8;
+}
+
+message GetCannonDataResponse{
+    repeated CannonBase bases = 1;
+    repeated CannonUpgrade upgrades = 2;
+    repeated CannonBase petCannons =3;
+}
+
+message CannonUnlockRequest{
+    required int32 baseId = 1;
+}
+
+message CannonUnlockResponse{
+    required int32 baseId = 1;
+    optional ProfileResultCode result = 2;
+    optional int32 userLevel = 3;
+    optional int32 userExp = 4;
+    optional int32 gold1 = 5;
+    optional int32 gold2 = 6;
+    optional int32 gold3 = 7;
+    optional int32 pearl = 8;
+}
+
+message CannonUpgradeRequest{
+    required int32 baseId = 1;
+}
+
+message CannonUpgradeResponse{
+    required int32 baseId = 1;
+    optional ProfileResultCode result = 2;
+    optional int32 cannonLevel = 3;
+    optional int32 userLevel = 4;
+    optional int32 userExp = 5;
+    optional int32 gold1 = 6;
+    optional int32 gold2 = 7;
+    optional int32 gold3 = 8;
+    optional int32 pearl = 9;
+}
+
+message WheelEnterRequest
+{
+
+}
+
+message WheelGift
+{
+    required int32 id = 1;
+    required string name = 2;
+    required int32 quantityType = 3;
+    required int32 quantity = 4;
+    required int32 itemid = 5;
+    optional string filename = 6;
+    optional string extraDescription =7;
+}
+
+message WheelJackpot
+{
+    required int32 type = 1;
+    required int32 value = 2;
+}
+message WheelEnterResponse
+{
+    optional int32 ticketFree = 1;
+    optional int32 ticketVIP = 2;
+    repeated WheelGift gifts = 3;
+    optional int32 gold = 4;
+    optional int32 jackpot = 6;
+    repeated int32 jackpotGolds = 7;
+    repeated WheelJackpot jackpots = 8;
+    repeated int32 carriers = 9;
+    optional int32 carrierSel = 10;
+}
+
+message WheelLeaveRequest
+{
+
+}
+
+message WheelLeaveResponse
+{
+    optional int32 ticketFree = 1;
+    optional int32 ticketVIP = 2;
+    optional int32 gold = 3;
+    repeated InventorySimpleItem items = 4;
+}
+
+message WheelTurnRequest
+{
+    optional int32 ticketType = 1;
+}
+
+message WheelTurnResponse
+{
+    optional ProfileResultCode result = 1;
+    optional int32 ticketFree = 2;
+    optional int32 ticketVIP = 3;
+    optional int32 gold = 4;
+    optional int32 gift = 5;
+    optional int32 jackpot = 6;
+}
+
+message WheelGetRequest
+{
+    optional int32 ticketType = 1;
+}
+
+message WheelGetResponse
+{
+    optional int32 ticketType = 1;
+    repeated WheelGift gifts = 2;
+}
+
+message WheelIngameRequest
+{
+    optional int32 id = 1;
+}
+
+message WheelIngameResponse
+{
+    optional int32 ticketFree = 1;
+    optional int32 ticketVIP = 2;
+}
+
+message WheelCarrierRequest
+{
+    required int32 carrier = 1;
+}
+
+message WheelCarrierResponse
+{
+    optional ProfileResultCode result = 1;
+    optional int32 carrier = 2;
+}
+
+// Soccer
+message SoccerTeam
+{
+    optional int32 id = 1;
+    optional string name = 2;
+    optional string logo = 3;
+}
+
+message SoccerTeamsResponse
+{
+    repeated SoccerTeam teams = 1;
+}
+
+enum SoccerPredictedType
+{
+    PREDICTION_SCORE = 1;
+    PREDICTION_WIN_LOSE = 2;
+    PREDICTION_TOTAL_SCORE = 3;
+}
+
+enum SoccerStatus
+{
+    STATUS_LIVE = 1;
+    STATUS_FINISH = 2;
+    STATUS_CANCEL = 3;
+}
+
+message SoccerPrediction
+{
+    optional SoccerPredictedType type = 1;
+    // By exactly score
+    optional int32 predictGoal1 = 2;
+    optional int32 predictGoal2 = 3;
+    optional int32 predictGoalBuff = 4;
+    // WinLose/Total Score
+    optional int32 rate1 = 5;
+    optional int32 rate2 = 6;
+    optional int32 rate3 = 7;
+    optional int32 winRate1 = 8;
+    optional int32 winRate2 = 9;
+    optional bool isHome = 10;
+    optional bool isChoose = 11;
+}
+
+message SoccerInfo
+{
+    required int32 id = 1;
+    required int32 time = 2;
+    required int32 teamId1 = 3;
+    required int32 teamId2 = 4;
+    optional SoccerPrediction byScore = 5;
+    optional SoccerPrediction byWinLose = 6;
+    optional SoccerPrediction byTotalScore = 7;
+    optional int32 finalScore1 = 8;
+    optional int32 finalScore2 = 9;
+    optional int32 finalRate = 10;
+    optional int32 goldBet = 11;
+    optional int32 goldWin = 12;
+    optional int32 betId = 13;
+    optional bool isRev = 14;
+    optional SoccerStatus status = 15;
+}
+
+message SoccerEnterRequest
+{
+}
+
+message SoccerEnterResponse
+{
+    optional int32 goldTotalBet = 1;
+    optional int32 goldTotalWin = 2;
+    optional int32 goldCur = 3;
+    optional int32 maxByScore = 4;
+    optional int32 maxByWinLose = 5;
+    optional int32 maxByTotalScore = 6;
+    optional int32 goldBetMin = 7;
+    optional int32 goldBetMax = 8;
+}
+
+enum SoccerMatchType
+{
+    MATCH_TYPE_NEXT_MATCHES = 1;
+    MATCH_TYPE_RESULT = 2;
+    MATCH_TYPE_HISTORY = 3;
+}
+
+enum SoccerResult
+{
+    RESULT_SUCCESS = 1;
+    RESULT_SUCCESS_NOT_UPDATE = 2;
+    RESULT_FAIL = 3;
+    RESULT_FAIL_OUT_MAX = 4;
+    RESULT_FAIL_OUT_MIN = 5;
+    RESULT_FAIL_OUT_MONEY = 6;
+    RESULT_FAIL_OUT_MATCH = 7;
+    RESULT_FAIL_TIME_OVER = 8;
+    RESULT_FAIL_NO_MATCH = 9;
+    RESULT_FAIL_ALREADY_RECEIVE = 10;
+}
+
+message SoccerBetCount
+{
+    optional int32 id = 1;
+    optional int32 countScore = 2;
+    optional int32 countWinLose = 3;
+    optional int32 countTotalScore = 4;
+}
+
+message SoccerMatchesRequest
+{
+    required SoccerMatchType type = 1;
+}
+
+message SoccerMatchesResponse
+{
+    optional SoccerResult result = 1;
+    repeated SoccerInfo infos = 2;
+    optional SoccerMatchType type = 3;
+    optional int32 hisReddot = 4;
+}
+
+message SoccerBetRequest
+{
+    required SoccerPredictedType type = 1;
+    required int32 id = 2;
+    required int32 goldBet = 3;
+    optional int32 score1 = 4;
+    optional int32 score2 = 5;
+    optional bool home = 6;
+}
+
+message SoccerBetResponse
+{
+    optional SoccerResult result = 1;
+    optional int32 id = 2;
+    optional SoccerPredictedType type = 3;
+    optional int32 goldTotalBet = 4;
+    optional int32 goldCur = 5;
+    optional SoccerBetCount counters = 6;
+}
+
+message SoccerBetCountResponse
+{
+    repeated SoccerBetCount counters = 1;
+}
+
+message SoccerReceiveRequest
+{
+    optional int32 id = 1;
+    optional int32 betId = 2;
+}
+
+message SoccerReceiveResponse
+{
+    optional SoccerResult result = 1;
+    optional int32 id = 2;
+    optional int32 betId = 3;
+    optional int32 goldWin = 4;
+    optional int32 goldCur = 5;
+    optional int32 goldRev = 6;
+    optional int32 goldBet = 7;
+    optional int32 totalBet = 8;
+    optional int32 totalWin = 9;
+}
+
+message SoccerReddotRequest
+{
+}
+
+message SoccerReddotResponse
+{
+    optional int32 reddot = 1;
+}
+
+// Pet
+enum PetResult
+{
+    PET_RESULT_SUCCESS = 1;
+    PET_RESULT_FAIL = 2;
+    PET_RESULT_FAIL_MONEY = 3;
+    PET_RESULT_SUCCESS_WHEEL = 4;
+    PET_RESULT_SUCCESS_GOLD = 5;
+    PET_RESULT_FAIL_RECEIVED = 6;
+}
+
+message PetGift
+{
+    optional int32 id = 1;
+    optional int32 quantity = 2;
+    optional string name = 3;
+    optional string filename = 4;
+}
+
+message PetInfoRequest
+{
+}
+
+message PetInfoResponse
+{
+    optional int32 acc = 1;
+    optional int32 accMax = 2;
+    optional bool unlock = 3;
+    optional int32 unlockMoney = 4;
+    repeated PetGift gifts = 5; // Daily gifts
+    optional int32 paymentBuff = 6;
+    optional int32 giftCount = 7;
+    optional int32 level =8;
+    optional int32 nextLevel = 9;
+    optional PetRampageSkillResponse PetRampageSkillResponse =10;
+    optional PetRampageSkillResponse nextPetRampageSkillResponse = 11;
+    optional int32 bonusGold = 12;
+}
+
+message PetRampageSkillResponse
+{
+    optional int32 acc = 1;
+    optional int32 accMax = 2;
+    optional int32 cannonID = 3;
+    optional int32 maxDuration = 4;
+    optional float skillAccBuff = 5;
+}
+
+message PetUpdateResponse
+{
+    optional int32 acc = 1;
+    optional int32 accMax = 2;
+    optional bool unlock = 3;
+    optional int32 unlockMoney = 4;
+    optional int32 bonusGold = 5;
+}
+
+message PetUnlockRequest
+{
+}
+
+message PetUnlockResponse
+{
+    optional PetResult result = 1;
+    optional int32 gold = 2;
+    optional int32 bonusGold = 3;
+}
+
+message PetLevelUpResponse
+{
+    optional PetResult result = 1;
+    optional int32 gold = 2;
+    optional PetRampageSkillResponse PetRampageSkillResponse =3;
+    optional PetRampageSkillResponse nextPetRampageSkillResponse = 4;
+    optional int32 acc = 5;
+    optional int32 accMax = 6;
+    optional bool unlock = 7;
+    optional int32 unlockMoney = 8;
+    optional int32 level =9;
+    optional int32 nextLevel = 10;
+    optional int32 bonusGold = 11;
+}
+
+message PetGiftReceiveRequest
+{
+}
+
+message PetGiftReceiveResponse
+{
+    optional PetResult result = 1;
+}
+
+message PetGiftAskingResponse
+{
+    repeated PetGift gifts = 1;
+}
+
+message AdsViewRequest
+{
+
+}
+
+message AdsViewResponse
+{
+    required int32 maxViewPerDay = 1;
+    required int32 countViewLeft = 2;
+}
+
+message DailyBonusRequest
+{
+}
+
+message DailyBonusResponse
+{
+    optional int32 bonusDayIndex = 1;
+    repeated MapDailyBonusItem listBonusItem = 2;
+    repeated int32 listClaimedDay = 3;
+    optional int32 result = 4;
+}
+
+message DailyBonusItem
+{
+    optional int32 id = 1;
+    optional int32 itemID = 2;
+    optional int32 itemType = 3;
+    optional int32 amount = 4;
+    optional string fileName = 5;
+    optional string description = 6;
+}
+
+message MapDailyBonusItem
+{
+    optional int32 id =1;
+    repeated DailyBonusItem listBonusItem = 2;
+}
+
+message ClaimDailyBonusRequest
+{
+    repeated int32 claimdays = 1;
+}
+
+message ClaimDailyBonusResponse
+{
+    optional int32 result = 1;
+    optional int32 gold = 2;
+    repeated DailyBonusItem listBonusItem = 3;
+}
+
+enum CollectionState
+{
+    STATE_LOCK = 1;
+    STATE_UNLOCK = 2;
+}
+
+message CollectionInfoRequest
+{
+
+}
+
+message CollectionInfoResponse
+{
+    repeated CollectionDataResponse listCollectionData = 1;
+}
+
+message CollectionDataResponse
+{
+    optional int32 id = 1;
+    optional string description = 2;
+    repeated CollectionItemDataResponse listItem = 3;
+    repeated int32 listMilestone = 4;
+    repeated int32 listCompletedMilestone = 5;
+    optional bool hasPrize = 6;
+}
+
+message CollectionItemDataResponse
+{
+    optional int32 id = 1;
+    optional int32 collectionId = 2;
+    optional int32 itemID = 3;
+    optional int32 fishID = 4;
+    optional CollectionState state = 5;
+}
+
+message ClaimCollectionPrizeRequest
+{
+    optional int32 collectionId = 1;
+}
+
+message ClaimCollectionPrizeResponse
+{
+    optional int32 result = 1;
+    optional int32 gold = 2;
+    repeated CollectionPrizeResponse listPrize = 3;
+}
+
+message CollectionPrizeResponse
+{
+    optional int32 id = 1;
+    optional int32 collectionId = 2;
+    optional int32 itemID = 3;
+    optional int32 itemType = 4;
+    optional int32 quantity = 5;
+    optional string description = 6;
+}
+
+// Donate friends
+message DonateFriendDetail{
+    optional string userID = 1;
+    optional string userName = 2;
+    optional string userAvatar = 3;
+    optional int32 userLevel = 4;
+    optional int32 userExp = 5;
+    optional int32 userGold = 6;
+    repeated DailyBonusItem listDonateGift = 7;
+    optional bool canSentGift = 8;
+    optional string userFacebookId = 9;
+}
+
+message DonateFriendListDetailRequest{
+    repeated string friendIDs = 1;
+    // repeated string zaloIDs = 2;
+    repeated string facebookIDs = 3;
+}
+
+message DonateFriendListDetailResponse{
+    optional ProfileResultCode result = 1;
+    repeated DonateFriendDetail friendDonateDetail = 2;
+    optional int32 numberSendDonate = 3;
+    optional int32 numberReceiveDonate = 4;
+    optional int32 numberMaxSendDonate = 5;
+    optional int32 numberMaxReceiveDonate = 6;
+    optional int32 numberMaxFriendsSent = 7;
+}
+
+message DonateFriendReceiveItemsRequest{
+    optional string userIDFriend = 1;
+}
+
+message DonateFriendReceiveItemsResponse{
+    optional ProfileResultCode result = 1;
+    optional string userIDFriend = 2;
+    optional int32 numberReceiveDonate = 3;
+    optional int32 gold = 4;
+}
+
+message DonateFriendSendItemsRequest{
+    optional string userIDFriend = 1;
+}
+
+message DonateFriendSendItemsResponse{
+    optional ProfileResultCode result = 1;
+    optional string userIDFriend = 2;
+    optional int32 numberSendDonate = 3;
+}
+
+message DonateListFriendSendItemsRequest{
+    repeated string userIDFriends = 1;
+}
+
+message DonateListFriendSendItemsResponse{
+    optional ProfileResultCode result = 1;
+    repeated string userIDFriends = 2;
+    optional int32 numberSendDonate = 3;
+}
+
+message DonateFriendCheckGiftRequest{
+}
+
+message DonateFriendCheckGiftResponse{
+    optional bool haveGift = 1;
+}

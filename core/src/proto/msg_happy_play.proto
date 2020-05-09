@@ -1,0 +1,405 @@
+syntax = "proto2";
+package proto.message;
+option java_outer_classname="HappyPlayMessageFactory";
+option java_package ="proto.message";
+
+enum HPHappyPlayCommand {
+	HAPPY_PLAY_REFUND_EVENT_REQUEST = 11;
+	HAPPY_PLAY_REFUND_EVENT_RESPONSE = 12;
+	HAPPY_PLAY_APPLE_IAP_INFO_REQUEST = 13;
+	HAPPY_PLAY_APPLE_IAP_INFO_RESPONSE = 14;
+	HAPPY_PLAY_APPLE_IAP_BUY_REQUEST = 15;
+	HAPPY_PLAY_APPLE_IAP_BUY_RESPONSE = 16;
+	HAPPY_PLAY_GOOGLE_IAP_INFO_REQUEST = 19;
+	HAPPY_PLAY_GOOGLE_IAP_INFO_RESPONSE = 20;
+	HAPPY_PLAY_GOOGLE_IAP_BUY_REQUEST = 21;
+	HAPPY_PLAY_GOOGLE_IAP_BUY_RESPONSE = 22;
+	
+	HAPPY_PLAY_LOM_INFO_REQUEST = 27;
+	HAPPY_PLAY_LOM_INFO_RESPONSE = 28;
+	HAPPY_PLAY_LOM_URL_REQUEST = 29;
+	HAPPY_PLAY_LOM_URL_RESPONSE = 30;
+	HAPPY_PLAY_LOM_BUY_REQUEST = 31;
+	HAPPY_PLAY_LOM_BUY_RESPONSE = 32;
+	
+	HAPPY_PLAY_BP_INFO_REQUEST = 33;
+	HAPPY_PLAY_BP_INFO_RESPONSE = 34;
+	HAPPY_PLAY_BP_URL_REQUEST = 35;
+	HAPPY_PLAY_BP_URL_RESPONSE = 36;
+	HAPPY_PLAY_BP_BUY_REQUEST = 37;
+	HAPPY_PLAY_BP_BUY_RESPONSE = 38;
+	
+	HAPPY_PLAY_LOM_GLOBAL_INFO_REQUEST = 39;
+	HAPPY_PLAY_LOM_GLOBAL_INFO_RESPONSE = 40;
+	HAPPY_PLAY_LOM_GLOBAL_URL_REQUEST = 41;
+	HAPPY_PLAY_LOM_GLOBAL_URL_RESPONSE = 42;
+	HAPPY_PLAY_LOM_GLOBAL_BUY_REQUEST = 43;
+	HAPPY_PLAY_LOM_GLOBAL_BUY_RESPONSE = 44;
+	
+	HAPPY_PLAY_PROMOTION_INFO_REQUEST = 45;
+	HAPPY_PLAY_PROMOTION_INFO_RESPONSE = 46;
+	
+	HAPPY_PLAY_BOOSTER_PACK_INFO_REQUEST = 47;
+	HAPPY_PLAY_BOOSTER_PACK_INFO_RESPONSE = 48;
+	
+	HAPPY_PLAY_CD_INFO_REQUEST = 49;
+	HAPPY_PLAY_CD_INFO_RESPONSE = 50;
+	HAPPY_PLAY_CD_BUY_REQUEST = 51;
+	HAPPY_PLAY_CD_BUY_RESPONSE = 52;
+	
+	HAPPY_PLAY_SPECIAL_OFFER_PACK_INFO_REQUEST = 53;
+	HAPPY_PLAY_SPECIAL_OFFER_PACK_INFO_RESPONSE = 54;
+}
+
+message HappyPlayMessage{
+    required HPHappyPlayCommand command = 1;
+	optional HPAppleHPIAPInfoRequest msgHPAppleHPIAPInfoRequest = 9;
+	optional HPAppleHPIAPInfoResponse msgHPAppleHPIAPInfoResponse = 10;
+	optional HPAppleIAPBuyRequest msgHPAppleIAPBuyRequest = 11;
+	optional HPAppleIAPBuyResponse msgHPAppleIAPBuyResponse = 12;
+	optional HPGoogleHPIAPInfoRequest msgHPGoogleHPIAPInfoRequest = 13;
+	optional HPGoogleHPIAPInfoResponse msgHPGoogleHPIAPInfoResponse = 14;
+	optional HPGoogleIAPBuyRequest msgHPGoogleIAPBuyRequest = 15;
+	optional HPGoogleIAPBuyResponse msgHPGoogleIAPBuyResponse = 16;
+	optional int64 clienttime = 17;
+	
+	optional HPLOMInfoRequest msgHPLOMInfoRequest = 23;
+	optional HPLOMInfoResponse msgHPLOMInfoResponse = 24;
+	optional HPLOMUrlRequest msgHPLOMUrlRequest = 25;
+	optional HPLOMUrlResponse msgHPLOMUrlResponse = 26;
+	optional HPLOMBuyRequest msgHPLOMBuyRequest = 27;
+	optional HPLOMBuyResponse msgHPLOMBuyResponse = 28;
+	
+	optional HPBPInfoRequest msgHPBPInfoRequest = 29;
+	optional HPBPInfoResponse msgHPBPInfoResponse = 30;
+	optional HPBPUrlRequest msgHPBPUrlRequest = 31;
+	optional HPBPUrlResponse msgHPBPUrlResponse = 32;
+	optional HPBPBuyRequest msgHPBPBuyRequest = 33;
+	optional HPBPBuyResponse msgHPBPBuyResponse = 34;
+	
+	optional HPLOMGlobalInfoRequest msgHPLOMGlobalInfoRequest = 35;
+	optional HPLOMGlobalInfoResponse msgHPLOMGlobalInfoResponse = 36;
+	optional HPLOMGlobalUrlRequest msgHPLOMGlobalUrlRequest = 37;
+	optional HPLOMGlobalUrlResponse msgHPLOMGlobalUrlResponse = 38;
+	optional HPLOMGlobalBuyRequest msgHPLOMGlobalBuyRequest = 39;
+	optional HPLOMGlobalBuyResponse msgHPLOMGlobalBuyResponse = 40;
+	
+	optional HPPromotionInfoRequest msgHPPromotionInfoRequest = 41;
+	optional HPPromotionInfoResponse msgHPPromotionInfoResponse = 42;
+	
+	optional HPBoosterPackInfoRequest msgHPBoosterPackInfoRequest = 43;
+	optional HPBoosterPackInfoResponse msgHPBoosterPackInforResponse = 44;
+	
+	optional HPCDInfoRequest msgHPCDInfoRequest = 45;
+	optional HPCDInfoResponse msgHPCDInfoResponse = 46;
+	optional HPCDBuyRequest msgHPCDBuyRequest = 47;
+	optional HPCDBuyResponse msgHPCDBuyResponse = 48;
+	
+	optional HPSpecialOfferPackInfoRequest msgHPSpecialOfferPackInfoRequest = 49;
+	optional HPSpecialOfferPackInfoResponse msgHPSpecialOfferPackInforResponse = 50;
+}
+
+message HPAppleHPIAPInfoRequest{
+}
+
+message HPAppleHPIAPInfoResponse{
+	repeated HPIAPInfo items = 1;
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	optional float promotionPercent = 6;
+}
+
+message HPIAPInfo{
+	required string itemId = 1;
+	optional string description = 2;
+	optional int32 goldAmount = 3;
+	optional int32 goldBonus = 4;
+	optional int32 vndGross = 5;
+}
+
+message HPAppleIAPBuyRequest{
+	required string receiptData = 1;
+}
+
+message HPAppleIAPBuyResponse{
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+    optional int32 HappyPlayEventNewCount = 9;
+    optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string itemId = 12;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 13;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 14;
+}
+
+message HPGoogleHPIAPInfoRequest{
+}
+
+message HPGoogleHPIAPInfoResponse{
+	repeated HPIAPInfo items = 1;	
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	optional float promotionPercent = 6;
+}
+
+message HPGoogleIAPBuyRequest{
+	required string originalJson = 1;
+	required string signatureData = 2;
+}
+
+message HPGoogleIAPBuyResponse{
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+	optional int32 HappyPlayEventNewCount = 9;
+	optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string itemId = 12;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 13;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 14;
+}
+
+message HPLOMInfoRequest {
+
+}
+
+message HPLOMInfoResponse {
+	repeated HPIAPInfo items = 1;
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	repeated string listChannel = 6;
+	optional float promotionPercent = 7;
+}
+
+message HPLOMUrlRequest {
+	required string itemId = 1;
+}
+
+message HPLOMUrlResponse {
+	required string url = 1;
+	optional string orderId = 2;
+}
+
+message HPLOMBuyRequest {
+	repeated string orderId = 1;
+}
+
+message HPLOMBuyResponse {
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+    optional int32 HappyPlayEventNewCount = 9;
+    optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string orderId = 12;
+	optional string itemId = 13;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 14;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 15;
+}
+
+message HPBPInfoRequest {
+}
+
+message HPBPInfoResponse {
+	repeated HPIAPInfo items = 1;
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	repeated string listChannel = 6;
+}
+
+message HPBPUrlRequest {
+	required string itemId = 1;
+	required string cardNo = 2;
+	optional string serialNo = 3;
+}
+
+message HPBPUrlResponse {
+	required string url = 1;
+	optional string orderId = 2;
+	optional string itemId = 3;
+}
+
+message HPBPBuyRequest {
+	repeated string orderId = 1;
+}
+
+message HPBPBuyResponse {
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+    optional int32 HappyPlayEventNewCount = 9;
+    optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string orderId = 12;
+	optional string itemId = 13;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 14;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 15;
+}
+
+message HPLOMGlobalInfoRequest {
+}
+
+message HPLOMGlobalInfoResponse {
+	repeated HPIAPInfo items = 1;
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	repeated string listChannel = 6;
+	optional float promotionPercent = 7;
+}
+
+message HPLOMGlobalUrlRequest {
+	required string itemId = 1;
+}
+
+message HPLOMGlobalUrlResponse {
+	required string url = 1;
+	optional string orderId = 2;
+	optional string parameters = 3;
+}
+
+message HPLOMGlobalBuyRequest 
+{
+	repeated string orderId = 1;
+}
+
+message HPLOMGlobalBuyResponse {
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+    optional int32 HappyPlayEventNewCount = 9;
+    optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string orderId = 12;
+	optional string itemId = 13;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 14;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 15;
+}
+
+message HPCDInfoRequest {
+}
+
+message HPCDInfoResponse {
+	repeated HPIAPInfo items = 1;
+	repeated float newHappyPlayEventPercent = 2;	
+	optional float newHappyPlayPetPercent = 3;
+	optional float minMoneyUnit = 4;
+	optional float minTicketUnit = 5;
+	optional string url = 6;
+	optional float promotionPercent = 7;
+}
+
+message HPCDBuyRequest {
+	repeated string orderId = 1;
+}
+
+message HPCDBuyResponse {
+	required int32 returnCode = 1;
+	optional string returnMessge = 2;
+	optional int32 amount = 3;
+	optional int32 gold1 = 4;
+	optional int32 gold2 = 5;
+	optional int32 gold3 = 6;
+	optional int32 HappyPlayCount = 7;
+	optional string transactionId = 8;
+    optional int32 HappyPlayEventNewCount = 9;
+    optional int32 petGoldBuff = 10;
+	optional int32 ticketBuffCnt = 11;
+	optional string orderId = 12;
+	optional string itemId = 13;
+	
+	optional HPBoosterPackInfoResponse listClaimedBoosterItem = 14;
+	optional HPSpecialOfferPackInfoResponse listClaimedSpecialOfferItem = 15;
+}
+
+message HPPromotionInfoRequest
+{
+	
+}
+
+message HPPromotionInfoResponse
+{
+	optional int64 timeleft = 1;
+}
+
+message HPBoosterPackInfoRequest
+{
+}
+
+message HPBoosterPackInfoResponse
+{
+	repeated HPBoosterPackItem listItem = 3;
+}
+
+message HPBoosterPackItem
+{
+	optional int32 id = 1;
+	optional int32 itemID = 2;
+	optional int32 itemType = 3;
+	optional int32 amount = 4;
+	optional string fileName = 5;
+	optional string description = 6;
+	optional int32 level = 7;
+	optional int32 daycount = 8;
+	optional int32 iapcount = 9;
+	optional int32 happyplaychannel = 10;
+}
+
+message HPSpecialOfferPackInfoRequest
+{
+}
+
+message HPSpecialOfferPackInfoResponse
+{
+	repeated HPSpecialOfferPackItem listItem = 3;
+}
+
+message HPSpecialOfferPackItem
+{
+	optional int32 id = 1;
+	optional int32 itemID = 2;
+	optional int32 itemType = 3;
+	optional int32 amount = 4;
+	optional string fileName = 5;
+	optional string description = 6;
+}

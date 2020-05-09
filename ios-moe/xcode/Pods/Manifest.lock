@@ -1,0 +1,82 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - AlamofireObjectMapper (5.2.1):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - AppsFlyerFramework (5.1.0)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts/AppLinks (1.9.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.9.0)
+  - FBSDKCoreKit (4.30.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.30.0):
+    - FBSDKCoreKit
+  - GoogleSignIn (4.1.2):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMOAuth2 (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.2):
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+  - GoogleToolboxForMac/Defines (2.2.2)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.2)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.2)
+    - GoogleToolboxForMac/Defines (= 2.2.2)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.2)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.2)"
+  - GTMOAuth2 (1.1.6):
+    - GTMSessionFetcher (~> 1.1)
+  - GTMSessionFetcher (1.3.1):
+    - GTMSessionFetcher/Full (= 1.3.1)
+  - GTMSessionFetcher/Core (1.3.1)
+  - GTMSessionFetcher/Full (1.3.1):
+    - GTMSessionFetcher/Core (= 1.3.1)
+  - ObjectMapper (3.4.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - AlamofireImage (~> 3.3)
+  - AlamofireObjectMapper (~> 5.0)
+  - AppsFlyerFramework
+  - FBSDKCoreKit (~> 4.30.0)
+  - FBSDKLoginKit (~> 4.30.0)
+  - GoogleSignIn (~> 4.1.1)
+  - ObjectMapper (~> 3.4.2)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - AlamofireObjectMapper
+    - AppsFlyerFramework
+    - Bolts
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMOAuth2
+    - GTMSessionFetcher
+    - ObjectMapper
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  AlamofireObjectMapper: 1989f690e982b71921b9253f53a4f33a9bc00d88
+  AppsFlyerFramework: b5e6d0d1718c445eeb151769e97246c00ae4628d
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FBSDKCoreKit: 7c4bba2877781a131ab5d54c0a78c405d4307b62
+  FBSDKLoginKit: fe7a7e82373dc5daad92e1623219e86224ab1fb1
+  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
+  GoogleToolboxForMac: 800648f8b3127618c1b59c7f97684427630c5ea3
+  GTMOAuth2: e8b6512c896235149df975c41d9a36c868ab7fba
+  GTMSessionFetcher: cea130bbfe5a7edc8d06d3f0d17288c32ffe9925
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+
+PODFILE CHECKSUM: fdcfde05f940fc39acd2a08990b4ccf2488d5bf1
+
+COCOAPODS: 1.8.4

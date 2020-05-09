@@ -1,0 +1,188 @@
+package proto.message;
+
+@javax.annotation.Generated("/Users/vunguyen/project/gdxsocket/core/src/proto/msg_ingame.proto")
+public enum InGameCommand implements io.protostuff.EnumLite<InGameCommand>{
+
+    INGAME_GET_GAME_LIST_REQUEST(1),
+    INGAME_GET_GAME_LIST_RESPONSE(2),
+    INGAME_JOIN_GAME_REQUEST(3),
+    INGAME_JOIN_GAME_RESPONSE(4),
+    INGAME_JOIN_ROOM_REQUEST(5),
+    INGAME_JOIN_ROOM_RESPONSE(6),
+    INGAME_JOIN_BOARD_REQUEST(7),
+    INGAME_JOIN_BOARD_RESPONSE(8),
+    INGAME_BOARD_INFO_REQUEST(11),
+    INGAME_BOARD_INFO_RESPONSE(12),
+    INGAME_START_GAME_REQUEST(13),
+    INGAME_START_GAME_RESPONSE(14),
+    INGAME_PLAYER_READY_REQUEST(15),
+    INGAME_PLAYER_READY_RESPONSE(16),
+    INGAME_SET_BET_MONEY_REQUEST(17),
+    INGAME_SET_BET_MONEY_RESPONSE(18),
+    INGAME_SET_MAX_PLAYER_REQUEST(19),
+    INGAME_SET_MAX_PLAYER_RESPONSE(20),
+    INGAME_GET_HORDE_INFOR_RESPONSE(21),
+    INGAME_FIRE_REQUEST(22),
+    INGAME_FIRE_RESPONSE(23),
+    INGAME_LEAVE_BOARD_REQUEST(24),
+    INGAME_PLAYER_LEAVE_BOARD(25),
+    INGAME_LEAVE_BOARD_RESPONSE(26),
+    INGAME_CHANGE_OWNER_RESPONSE(27),
+    INGAME_LEAVE_ROOM_REQUEST(28),
+    INGAME_LEAVE_ROOM_RESPONSE(29),
+    INGAME_LEAVE_GAME_REQUEST(30),
+    INGAME_LEAVE_GAME_RESPONSE(31),
+    INGAME_OPEN_FIRE_REQUEST(32),
+    INGAME_OUT_OF_AMMO(33),
+    INGAME_OPEN_FIRE_RESPONSE(34),
+    INGAME_FINISH_GAME_REQUEST(35),
+    INGAME_FINISH_GAME_RESPONSE(36),
+    INGAME_CHAT_REQUEST(37),
+    INGAME_CHAT_RESPONSE(38),
+    INGAME_DONATE_MONEY_REQUEST(39),
+    INGAME_DONATE_MONEY_RESPONSE(40),
+    INGAME_USER_LEVEL_UP(41),
+    INGAME_GUN_CHANGE_REQUEST(42),
+    INGAME_GUN_CHANGE_REPONSE(43),
+    INGAME_BOSS_KILL_REPONSE(44),
+    INGAME_BOARD_STATUS_RESPONSE(45),
+    INGAME_GET_ROOM_LIST_REQUEST(46),
+    INGAME_GET_ROOM_LIST_RESPONSE(47),
+    INGAME_GET_BOARD_LIST_REQUEST(48),
+    INGAME_GET_BOARD_LIST_RESPONSE(49),
+    INGAME_CHAT_EMO_REQUEST(50),
+    INGAME_CHAT_EMO_RESPONSE(51),
+    INGAME_BET_MAKE_CONFIRM_REQUEST(52),
+    INGAME_BET_MAKE_CONFIRM_RESPONSE(53),
+    INGAME_SOLO_REQUEST(54),
+    INGAME_SOLO_RESPONSE(55),
+    INGAME_USE_ITEM_REQUEST(56),
+    INGAME_USE_ITEM_RESPONSE(57),
+    INGAME_SOLO_ACCEPT_CONFIRM(58),
+    INGAME_REVIVE_BOARD_REQUEST(59),
+    INGAME_REVIVE_BOARD_RESPONSE(60),
+    INGAME_REVIVE_BOARD_INFO_RESPONSE(61),
+    INGAME_ROOM_MONEY_LIST_REQUEST(62),
+    INGAME_ROOM_MONEY_LIST_RESPONSE(63),
+    INGAME_AVAILABLE_CANNONS_LIST(64),
+    INGAME_CREATE_BOARD_REQUEST(65),
+    INGAME_CREATE_BOARD_RESPONSE(66),
+    INGAME_NETWORK_TIME_RESPONSE(67),
+    INGAME_NETWORK_TIME_REQUEST(68),
+    INGAME_ACCUMULATION_RESPONSE(69),
+    INGAME_BOMB_OPEN_REQUEST(70),
+    INGAME_BOMB_OPEN_RESPONSE(71),
+    INGAME_BOMB_EXPLODE_RESPONSE(72),
+    INGAME_UDP_ESTABLISH_REQUEST(73),
+    INGAME_UDP_ESTABLISH_RESPONSE(74),
+    INGAME_SKILL_RESPONSE(75),
+    INGAME_PET_RAMPAGE_PRE_SKILL_RESPONSE(76),
+    INGAME_PET_RAMPAGE_BEGIN_SKILL_RESPONSE(77),
+    INGAME_PET_RAMPAGE_IN_SKILL_RESPONSE(78),
+    INGAME_PET_RAMPAGE_END_SKILL_RESPONSE(79),
+    INGAME_PET_RAMPAGE_SKILL_BULLET_REQUEST(80),
+    INGAME_PET_RAMPAGE_SKILL_BULLET_RESPONSE(81),
+    INGAME_COLLECTION_ITEM_DROP_RESPONSE(82),
+    UNRECOGNIZED(-1);
+
+    private final int value;
+
+    private InGameCommand(int n) {
+        this.value = n;
+    }
+
+    @Override
+    public int getNumber() {
+        if (value == -1) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+    }
+
+    public static final InGameCommand valueOf(int tag) {
+        switch(tag) {
+            case 1: return INGAME_GET_GAME_LIST_REQUEST;
+            case 2: return INGAME_GET_GAME_LIST_RESPONSE;
+            case 3: return INGAME_JOIN_GAME_REQUEST;
+            case 4: return INGAME_JOIN_GAME_RESPONSE;
+            case 5: return INGAME_JOIN_ROOM_REQUEST;
+            case 6: return INGAME_JOIN_ROOM_RESPONSE;
+            case 7: return INGAME_JOIN_BOARD_REQUEST;
+            case 8: return INGAME_JOIN_BOARD_RESPONSE;
+            case 11: return INGAME_BOARD_INFO_REQUEST;
+            case 12: return INGAME_BOARD_INFO_RESPONSE;
+            case 13: return INGAME_START_GAME_REQUEST;
+            case 14: return INGAME_START_GAME_RESPONSE;
+            case 15: return INGAME_PLAYER_READY_REQUEST;
+            case 16: return INGAME_PLAYER_READY_RESPONSE;
+            case 17: return INGAME_SET_BET_MONEY_REQUEST;
+            case 18: return INGAME_SET_BET_MONEY_RESPONSE;
+            case 19: return INGAME_SET_MAX_PLAYER_REQUEST;
+            case 20: return INGAME_SET_MAX_PLAYER_RESPONSE;
+            case 21: return INGAME_GET_HORDE_INFOR_RESPONSE;
+            case 22: return INGAME_FIRE_REQUEST;
+            case 23: return INGAME_FIRE_RESPONSE;
+            case 24: return INGAME_LEAVE_BOARD_REQUEST;
+            case 25: return INGAME_PLAYER_LEAVE_BOARD;
+            case 26: return INGAME_LEAVE_BOARD_RESPONSE;
+            case 27: return INGAME_CHANGE_OWNER_RESPONSE;
+            case 28: return INGAME_LEAVE_ROOM_REQUEST;
+            case 29: return INGAME_LEAVE_ROOM_RESPONSE;
+            case 30: return INGAME_LEAVE_GAME_REQUEST;
+            case 31: return INGAME_LEAVE_GAME_RESPONSE;
+            case 32: return INGAME_OPEN_FIRE_REQUEST;
+            case 33: return INGAME_OUT_OF_AMMO;
+            case 34: return INGAME_OPEN_FIRE_RESPONSE;
+            case 35: return INGAME_FINISH_GAME_REQUEST;
+            case 36: return INGAME_FINISH_GAME_RESPONSE;
+            case 37: return INGAME_CHAT_REQUEST;
+            case 38: return INGAME_CHAT_RESPONSE;
+            case 39: return INGAME_DONATE_MONEY_REQUEST;
+            case 40: return INGAME_DONATE_MONEY_RESPONSE;
+            case 41: return INGAME_USER_LEVEL_UP;
+            case 42: return INGAME_GUN_CHANGE_REQUEST;
+            case 43: return INGAME_GUN_CHANGE_REPONSE;
+            case 44: return INGAME_BOSS_KILL_REPONSE;
+            case 45: return INGAME_BOARD_STATUS_RESPONSE;
+            case 46: return INGAME_GET_ROOM_LIST_REQUEST;
+            case 47: return INGAME_GET_ROOM_LIST_RESPONSE;
+            case 48: return INGAME_GET_BOARD_LIST_REQUEST;
+            case 49: return INGAME_GET_BOARD_LIST_RESPONSE;
+            case 50: return INGAME_CHAT_EMO_REQUEST;
+            case 51: return INGAME_CHAT_EMO_RESPONSE;
+            case 52: return INGAME_BET_MAKE_CONFIRM_REQUEST;
+            case 53: return INGAME_BET_MAKE_CONFIRM_RESPONSE;
+            case 54: return INGAME_SOLO_REQUEST;
+            case 55: return INGAME_SOLO_RESPONSE;
+            case 56: return INGAME_USE_ITEM_REQUEST;
+            case 57: return INGAME_USE_ITEM_RESPONSE;
+            case 58: return INGAME_SOLO_ACCEPT_CONFIRM;
+            case 59: return INGAME_REVIVE_BOARD_REQUEST;
+            case 60: return INGAME_REVIVE_BOARD_RESPONSE;
+            case 61: return INGAME_REVIVE_BOARD_INFO_RESPONSE;
+            case 62: return INGAME_ROOM_MONEY_LIST_REQUEST;
+            case 63: return INGAME_ROOM_MONEY_LIST_RESPONSE;
+            case 64: return INGAME_AVAILABLE_CANNONS_LIST;
+            case 65: return INGAME_CREATE_BOARD_REQUEST;
+            case 66: return INGAME_CREATE_BOARD_RESPONSE;
+            case 67: return INGAME_NETWORK_TIME_RESPONSE;
+            case 68: return INGAME_NETWORK_TIME_REQUEST;
+            case 69: return INGAME_ACCUMULATION_RESPONSE;
+            case 70: return INGAME_BOMB_OPEN_REQUEST;
+            case 71: return INGAME_BOMB_OPEN_RESPONSE;
+            case 72: return INGAME_BOMB_EXPLODE_RESPONSE;
+            case 73: return INGAME_UDP_ESTABLISH_REQUEST;
+            case 74: return INGAME_UDP_ESTABLISH_RESPONSE;
+            case 75: return INGAME_SKILL_RESPONSE;
+            case 76: return INGAME_PET_RAMPAGE_PRE_SKILL_RESPONSE;
+            case 77: return INGAME_PET_RAMPAGE_BEGIN_SKILL_RESPONSE;
+            case 78: return INGAME_PET_RAMPAGE_IN_SKILL_RESPONSE;
+            case 79: return INGAME_PET_RAMPAGE_END_SKILL_RESPONSE;
+            case 80: return INGAME_PET_RAMPAGE_SKILL_BULLET_REQUEST;
+            case 81: return INGAME_PET_RAMPAGE_SKILL_BULLET_RESPONSE;
+            case 82: return INGAME_COLLECTION_ITEM_DROP_RESPONSE;
+            default: return UNRECOGNIZED;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "output": "src",
+  "platform": "iOS",
+  "inline-function-binding-output": "src/native",
+  "bindings": [
+    {
+      "type": "framework",
+      "name": "esdk",
+      "objcClassGenerationMode": "Binding",
+      "frameworkPath": "xcode/ESDK.framework",
+      "packageBase": "bind",
+      "importCode": "#import <Foundation/Foundation.h>\n#import <UIKit/UIKit.h>\n#import \"ESDK/ESDK.h\"\n#import \"ESDK/ESDK-Swift.h\""
+    }
+  ]
+}

@@ -1,0 +1,393 @@
+syntax = "proto2";
+package proto.message;
+option java_outer_classname="SystemMessageFactory";
+option java_package ="proto.message";
+
+enum SystemResultCode{
+    LOGIN_SUCCESS = 1;
+    LOGIN_FAIL_ERROR = -1;
+    LOGIN_DELAY = -2;
+	LOGIN_FAIL_BAN = -3;
+	MESSAGE_NORMAL = -4;
+	MESSAGE_LOW_VERSION = -5;
+	MESSAGE_DAILY_SUPPORT = -6;
+    MESSAGE_BROADCAST = -7;
+}
+
+enum SystemCommand{
+    SYSTEM_MSG_PING = 68;
+    SYSTEM_MSG_ERROR_RESPONSE = 69;
+    SYSTEM_MSG_LOGIN_REQUEST = 1;
+    SYSTEM_MSG_LOGIN_RESPONSE = 2;
+    SYSTEM_MSG_PUSH_RESPONSE = 3;
+	SYSTEM_MSG_MAINTAIN_RESPONSE = 4;
+	SYSTEM_MSG_GAME_FUNC_RESPONSE = 5;
+	SYSTEM_MSG_ORBIT_DATA_CHECKSUM = 6;
+	SYSTEM_MSG_APPFLYERLOG_REQUEST = 7;
+	SYSTEM_MSG_SNS_SERVER_TOKEN_REQUEST = 8;
+	SYSTEM_MSG_SNS_SERVER_TOKEN_RESPONSE = 9;
+	SYSTEM_IMAGE_SHARE_REQUEST = 10;
+	SYSTEM_MSG_KEEP_HEARTBEAT = 11;
+    SYSTEM_MSG_NOTIFICATION_REQUEST = 12;
+    SYSTEM_MSG_NOTIFICATION_RESPONSE = 13;
+	SYSTEM_MSG_PUSH_REQUEST = 14;
+    SYSTEM_MSG_SERVER_STATUS_REQUEST = 15;
+    SYSTEM_MSG_SERVER_STATUS_RESPONSE = 16;
+	SYSTEM_MSG_SOCCER_CALLBACK_RESPONSE = 17;
+	SYSTEM_IMAGE_SHARE_INFO_REQUEST = 18;
+	SYSTEM_IMAGE_SHARE_INFO_RESPONSE = 19;
+	SYSTEM_IMAGE_SHARE_RESPONSE = 20;
+	SYSTEM_IMAGE_SHARE_BOARD_RESPONSE = 21;
+	SYSTEM_LANGUAGE_CHANGE_REQUEST = 22;
+	SYSTEM_LANGUAGE_CHANGE_RESPONSE = 23;
+	SYSTEM_MSG_PING_TEST_REQUEST = 24;
+	SYSTEM_MSG_PING_TEST_RESPONSE = 25;
+	SYSTEM_MSG_NETWORK_LOGGER_REQUEST = 26;
+}
+
+message SystemMessage{
+    required SystemCommand command = 1;
+    optional ErrorResponse msgErrorResponse = 2;
+    optional LoginRequest msgLoginRequest = 3;
+    optional LoginResponse msgLoginResponse = 4;
+	optional PushMessage msgPushMessageResponse = 5;
+	optional PushMessage msgMaintainResponse = 6;
+	optional GameFuncResponse msgGameFuncResponse = 7;
+	optional OrbitDataChecksum msgOrbitDataChecksum = 8;
+	optional AppflyerLog msgAppflyerRequest = 9;
+	optional SnsServerTokenRequest msgSnsServerTokenRequest = 10;
+	optional SnsServerTokenResponse msgSnsServerTokenResponse = 11;
+	optional NotificationRequest msgNotificationRequest = 12;
+	optional NotificationResponse msgNotificationResponse = 13;
+	optional int64 clienttime = 14;
+	optional PushMessageRequest msgPushMessageRequest = 15;
+	optional ServerStatusResponse msgServerStatusResponse = 16;
+	optional ImageShareRequest msgImageShareRequest = 17;
+	optional NotifyMessageSoccerResponse msgNotifyMessageSoccerResponse = 18;
+	optional ImageShareInfoRequest msgImageShareInfoRequest = 19;
+	optional ImageShareInfoResponse msgImageShareInfoResponse = 20;
+	optional ImageShareResponse msgImageShareResponse = 21;
+	optional ImageShareBoardResponse msgImageShareBoardResponse = 22;
+	optional LanguageChangeRequest msgLanguageChangeRequest = 23;
+	optional LanguageChangeResponse msgLanguageChangeResponse =24;
+	optional PingTestRequest msgPingTestRequest = 25;
+	optional PingTestResponse msgPingTestResponse = 26;
+	optional NetworkLoggerRequest msgNetworkLoggerRequest = 27;
+}
+
+message ErrorResponse{
+    required string content = 1;
+}
+
+message GetIDResponse{
+    required string userID = 1;
+}
+
+message LoginRequest{
+    required string userID = 1;
+    optional string password = 2;
+	optional string facebookID = 3;
+	optional string facebookToken = 4;
+	optional string facebookName = 5;
+	optional string deviceUID = 6;
+	optional string deviceName = 7;
+	optional string clientVersion = 8;
+	optional string osPlatform = 9;
+	optional string osVersion = 10;
+	optional string connectionType = 11;
+	optional string clientSource = 12;
+	optional string thirdPartySource = 13;
+	optional int32 snsflag = 14;
+	optional string avatar = 15;
+	optional bool orbitTransform = 16;
+	optional string snsWrongId = 17;
+	optional string appleToken = 18;
+	optional string refCode = 19;
+	optional string piggyDeviceID = 20;
+	optional bool useCompress = 21;
+	optional int32 bucketGame = 22;
+	optional int32 bucketMoney = 23;
+	optional int32 telcolCarrier = 24;
+	optional int32 languageCode = 25;
+	optional string oUserID = 26;
+	optional string oPassword = 27;
+	optional string buildSource = 28;
+}
+
+enum NofifyFlag{
+	NOTIFY_TEXT = 0;
+	NOTIFY_NEW_VER = 1;
+	NOTIFY_SNS_FRIEND_INVITE = 2;
+	NOTIFY_BET_MODE = 3;
+}
+
+message IngameItem{
+	optional int32 itemId = 1;
+	optional string description = 2;
+	optional int32 goldBuy = 3;
+	optional int32 goldSend = 4;
+	optional int32 category = 5;
+	optional bool freeMode = 6;
+	optional bool betMode = 7;
+	optional int32 stunSecond = 8;
+	optional int32 kickAmount = 9;
+	optional int32 charmPoint = 10;
+}
+
+message InventoryItem
+{
+	required int32 id = 1;
+	optional string name = 2;
+	optional string desc1 = 3;
+	optional string desc2 = 4;
+	optional int32 action = 5;
+	optional int32 val1 = 6;
+	optional int32 val2 = 7;
+	optional int32 val3 = 8;
+}
+
+message LoginResponse{
+    required SystemResultCode result = 1;
+    required string content = 2;
+	optional string userID = 3;
+	optional string password = 4;
+	optional string userName = 5;
+	message LoginGift {
+        optional int32 itemType = 1;
+        optional int32 itemAmount = 2;
+    };
+    repeated LoginGift loginGift = 6;
+	optional int32 serverTime = 7;
+	optional bool paymentChannelOpen = 8;
+	optional string csEmail = 9;
+	optional string csPhone = 10;
+	optional string csWeb = 12;
+	optional string fbAvatar = 13;
+	optional int32 banTo = 14;
+	optional string banReason = 15;
+	optional int32 flag = 16;
+	optional string notify_msg = 18;
+	optional string androidUrl = 19;
+	optional string iosUrl = 20;
+	optional string wpUrl = 21;
+	optional int32 clientVersion = 22;
+	repeated string gameHints = 23;
+	optional int32 paymentCount = 24;
+	optional string facebookID = 25;
+	optional string zaloID = 26;
+	optional bool betModeOpen = 27;
+	repeated GameFuncResponse gameFuncs = 28;
+	optional int32 betModeMin = 29;
+	optional bool isNewRegister = 30;
+	optional int32 betModeRoomStep = 31;
+	optional int32 snsAuthenRewardAmount = 32;
+	optional int32 snsAuthenRewardType = 33;
+	optional int32 friendFreeGiftSendAmount = 34;
+	optional int32 friendFreeGiftReceiveAmount = 35;
+	optional int32 friendAddGiftAmount = 36;
+	repeated int32 gunBullets = 37;
+	optional string snsServerToken = 38;
+	repeated IngameItem ingameItems = 39;
+	optional int32 ingameRoseId = 40;
+	optional int32 ingameRoseTime = 41;
+	optional int32 ingameRoseMax = 42;
+	optional int32 ingameSoloSendCoolDown = 43;
+	optional int32 ingameSoloReceiveCoolDown = 44;
+	optional string ingameNews = 45;
+	optional int32 minSoloMoney = 46;
+	optional int32 firstGunChange = 47;
+	optional int32 paymentEventNewCount = 48;
+    repeated string betModeTypes = 49;
+	optional int32 dailySupportCnt = 50;
+	optional int32 maxPearlAvailable = 51;
+    repeated InventoryItem inventoryItems = 52;
+	optional int32 ticketBuffCnt = 53;
+	optional int32 bradcastMsgInterval = 54;
+	optional int32 defaultPaymentSheet = 55;
+	optional bool happyPlayChannelOpen = 56;
+	optional int32 happyPlayCount = 57;
+	optional int32 happyPlayEventNewCount = 58;
+	optional int32 defaultHappyPlaySheet = 59;
+	optional int32 bucketGame = 60;
+	optional int32 bucketMoney = 61;
+	required int32 maxAdsViewPerDay = 62;
+	required int32 currentAdsViewPerDay = 63;
+	optional int32 timeZoneOffset = 64;
+	repeated ShareData shareData = 65;
+	repeated string newsImageLinks = 66;
+	optional string onelink = 67;
+}
+
+message ShareData
+{
+	optional string shareLink = 1;
+	optional string shareImage = 2;
+	optional int32 shareId = 3;
+	optional string shareTitle = 4;
+	optional string shareDescription = 5;
+	optional string buildSource = 6;
+}
+
+message PingReques{
+	
+}
+
+message PushMessageRequest{
+	
+}
+
+message PushMessage{
+	required int32 startAt = 1;
+	optional int32 endAt = 2;
+	optional string reason = 3;
+	optional SystemResultCode type = 4;
+	optional string url = 5;
+}
+
+message GameFuncResponse{
+	optional string funcName = 1;
+	optional bool value = 2;
+}
+
+message OrbitData {
+	optional int32 orbitId = 1;
+	optional string orbitData = 2;
+};
+
+message OrbitDataChecksum{
+	repeated OrbitData orbits = 1;
+}
+
+message AppflyerLog{
+	repeated string str = 1;
+}
+
+message SnsServerTokenRequest{
+	required string clientSnsId = 1;
+	required int32 clientSnsFlag = 2;
+	required string clientToken = 3;
+}
+
+message SnsServerTokenResponse{
+	required string serverToken = 1;
+}
+
+message NotifyMessage
+{
+    optional int32 time = 1;
+    optional string msg = 2;
+}
+
+message NotificationRequest
+{
+}
+
+message NotificationResponse
+{
+    repeated NotifyMessage dailyQuestHours = 1;
+    repeated NotifyMessage onlineBonusHours = 2;
+    repeated NotifyMessage callbackDays = 3;
+    repeated int32 callbackHours = 4;
+    optional int32 callbackGoldRev = 5;
+}
+
+message NotifyMessageSoccerResponse
+{
+	optional NotifyMessage msg = 1;
+}
+
+message ServerStatusResponse
+{
+    message ServerStatus
+    {
+        optional string ip = 1;
+        optional int32 port = 2;
+        optional bool status = 3;
+        optional string domain = 4;
+    }
+    optional bool status = 1;
+    repeated ServerStatus servers = 2;
+}
+
+enum ImageShareType
+{
+	SHARE_NORMAL = 1;
+	SHARE_BOARD = 2;
+}
+
+enum ImageShareResult
+{
+	SHARE_SUCCESS = 1;
+	SHARE_FAIL = 2;
+}
+
+message ImageShareRequest
+{
+    optional bool success = 1;
+	optional ImageShareType type = 2;
+}
+
+message ImageShareResponse
+{
+	optional bool shareNormal = 1;	// Available to share or not
+	optional bool shareBoard = 2;	// Available to share or not
+	optional int32 totalGold = 3;
+	optional int32 unlockGold = 4;
+	optional ImageShareResult result = 5;
+    optional bool frameNormal = 6;
+	optional bool frameBoard = 7;
+}
+
+message ImageShareBoardResponse
+{
+	optional int32 goldBoard = 1;
+}
+
+message ImageShareInfoRequest
+{
+}
+
+message ImageShareInfoResponse
+{
+	optional bool shareNormal = 1;
+	optional bool shareBoard = 2;
+	optional int32 goldNormal = 3;
+	optional bool frameNormal = 4;
+	optional bool frameBoard = 5;
+}
+
+message LanguageChangeRequest
+{
+	required int32 languageCode = 1;
+}
+
+message LanguageChangeResponse
+{
+	required int32 result = 1;
+	required int32 languageCode = 2;
+	repeated string gameHints = 3;
+}
+
+message PingTestRequest
+{
+	required int64 id = 1;
+}
+
+message PingTestResponse
+{
+	required int64 id = 1;
+}
+
+//Latency logger
+message NetworkLoggerRequest
+{
+	required int32 count = 1;
+	optional int32 minLatency = 2;
+	optional int32 maxLatency = 3;
+	optional int32 averageLatency = 4;
+	optional int64 sendTimestamp = 5;
+	optional int32 disconnectCount = 6;
+	optional int32 connectionType = 7;
+	optional int32 networkudplost = 8;
+	optional string osPlatform = 9;
+}

@@ -1,0 +1,285 @@
+
+fruit.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fruit_banana
+  rotate: false
+  xy: 1574, 875
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+fruit_banana_left
+  rotate: false
+  xy: 1876, 977
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_banana_right
+  rotate: false
+  xy: 1838, 1279
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_banana_splash
+  rotate: false
+  xy: 770, 914
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+fruit_bg
+  rotate: false
+  xy: 2, 1316
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: -1
+fruit_bomb
+  rotate: false
+  xy: 1574, 573
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+fruit_button
+  rotate: false
+  xy: 1172, 443
+  size: 330, 330
+  orig: 330, 330
+  offset: 0, 0
+  index: -1
+fruit_circle
+  rotate: false
+  xy: 1876, 573
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+fruit_endgame_board
+  rotate: false
+  xy: 2, 166
+  size: 526, 389
+  orig: 526, 389
+  offset: 0, 0
+  index: -1
+fruit_grape
+  rotate: false
+  xy: 1439, 53
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+fruit_grape_left
+  rotate: false
+  xy: 1755, 1736
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_grape_right
+  rotate: false
+  xy: 1876, 675
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_grape_splash
+  rotate: false
+  xy: 770, 512
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+fruit_gray_dot
+  rotate: false
+  xy: 682, 540
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+fruit_green_dot
+  rotate: false
+  xy: 1172, 1299
+  size: 15, 15
+  orig: 15, 15
+  offset: 0, 0
+  index: -1
+fruit_home_icon
+  rotate: false
+  xy: 816, 54
+  size: 150, 153
+  orig: 150, 153
+  offset: 0, 0
+  index: -1
+fruit_ice
+  rotate: false
+  xy: 1284, 1579
+  size: 469, 457
+  orig: 469, 457
+  offset: 0, 0
+  index: -1
+fruit_icegrape
+  rotate: false
+  xy: 1741, 53
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+fruit_light
+  rotate: false
+  xy: 2, 557
+  size: 766, 757
+  orig: 766, 757
+  offset: 0, 0
+  index: -1
+fruit_orange
+  rotate: false
+  xy: 682, 209
+  size: 301, 301
+  orig: 301, 301
+  offset: 0, 0
+  index: -1
+fruit_orange_left
+  rotate: false
+  xy: 530, 255
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_orange_right
+  rotate: false
+  xy: 1686, 1277
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_orange_splash
+  rotate: false
+  xy: 1172, 775
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+fruit_queue
+  rotate: false
+  xy: 1504, 355
+  size: 452, 93
+  orig: 452, 93
+  offset: 0, 0
+  index: -1
+fruit_replay_icon
+  rotate: false
+  xy: 1755, 1581
+  size: 150, 153
+  orig: 150, 153
+  offset: 0, 0
+  index: -1
+fruit_slash
+  rotate: false
+  xy: 2, 2
+  size: 292, 18
+  orig: 292, 18
+  offset: 0, 0
+  index: -1
+fruit_time_bar
+  rotate: false
+  xy: 1504, 450
+  size: 432, 121
+  orig: 432, 121
+  offset: 0, 0
+  index: -1
+fruit_title
+  rotate: false
+  xy: 2, 22
+  size: 812, 142
+  orig: 812, 142
+  offset: 0, 0
+  index: -1
+fruit_watermelon
+  rotate: false
+  xy: 1137, 141
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+fruit_watermelon_right
+  rotate: false
+  xy: 985, 210
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_watermelon_splash
+  rotate: false
+  xy: 1284, 1177
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+fruit_zero
+  rotate: false
+  xy: 968, 57
+  size: 340, 82
+  orig: 340, 82
+  offset: 0, 0
+  index: -1
+
+fruit2.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fruit_crown_icon
+  rotate: false
+  xy: 154, 37
+  size: 164, 113
+  orig: 164, 113
+  offset: 0, 0
+  index: -1
+fruit_icon
+  rotate: false
+  xy: 154, 152
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+fruit_one
+  rotate: false
+  xy: 335, 259
+  size: 340, 82
+  orig: 340, 82
+  offset: 0, 0
+  index: -1
+fruit_three
+  rotate: false
+  xy: 677, 343
+  size: 340, 82
+  orig: 340, 82
+  offset: 0, 0
+  index: -1
+fruit_two
+  rotate: false
+  xy: 335, 343
+  size: 340, 82
+  orig: 340, 82
+  offset: 0, 0
+  index: -1
+fruit_watermelon_left
+  rotate: false
+  xy: 2, 2
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+score_pane
+  rotate: false
+  xy: 2, 304
+  size: 331, 121
+  orig: 331, 121
+  offset: 0, 0
+  index: -1

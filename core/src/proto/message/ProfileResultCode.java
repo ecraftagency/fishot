@@ -1,0 +1,144 @@
+package proto.message;
+
+@javax.annotation.Generated("/Users/vunguyen/project/gdxsocket/core/src/proto/msg_profile.proto")
+public enum ProfileResultCode implements io.protostuff.EnumLite<ProfileResultCode>{
+
+    PROFILE_CLAIM_INBOX_OK(1),
+    PROFILE_UPDATE_OK(2),
+    PROFILE_DAILY_QUEST_RECEIVE_OK(3),
+    PROFILE_CANNON_UNLOCK_OK(4),
+    PROFILE_CANNON_UPGRADE_OK(5),
+    PROFILE_CLAIM_DAILY_BONUS_OK(6),
+    PROFILE_DAILY_BONUS_OK(7),
+    PROFILE_CLAIM_COLLECTION_PRIZE_OK(8),
+    PROFILE_ACCUMULATE_CLAIM_OK(9),
+    PROFILE_CLAIM_INBOX_FAIL(-1),
+    PROFILE_UPDATE_FAIL(-2),
+    PROFILE_FACEBOOK_EXIST(-3),
+    PROFILE_FACEBOOK_AUTHEN_ERROR(-4),
+    PROFILE_FACEBOOK_DIFFERENT(-5),
+    PROFILE_USERNAME_INVALID(-6),
+    PROFILE_USERNAME_EXIST(-7),
+    PROFILE_USERNAME_ALREADY(-8),
+    PROFILE_FRIENDLIST_ACTION_FAILED(-9),
+    PROFILE_FRIENDLIST_TOTAL_FULL(-10),
+    PROFILE_FRIENDLIST_DAILY_FULL(-11),
+    PROFILE_FRIENDLIST_FRIEND_FULL(-12),
+    PROFILE_FRIENDLIST_FRIEND_ALREADY(-13),
+    PROFILE_DAILY_QUEST_RECEIVE_FAILED(-14),
+    PROFILE_GIFTCODE_RECEIVE_SUCCESS(-15),
+    PROFILE_GIFTCODE_RECEIVE_OUT_LIMIT(-16),
+    PROFILE_GIFTCODE_RECEIVE_NOT_AVAILABLE(-17),
+    PROFILE_GIFTCODE_RECEIVE_ALREADY_USED(-18),
+    PROFILE_CANNON_UNLOCK_FAIL_INVALID(-19),
+    PROFILE_CANNON_UNLOCK_FAIL_LEVEL(-20),
+    PROFILE_CANNON_UNLOCK_FAIL_GOLD(-21),
+    PROFILE_CANNON_UNLOCK_FAIL_PEARL(-22),
+    PROFILE_CANNON_UNLOCK_FAIL_BASE(-23),
+    PROFILE_CANNON_UPGRADE_FAIL_INVALID(-24),
+    PROFILE_CANNON_UPGRADE_FAIL_LEVEL(-25),
+    PROFILE_CANNON_UPGRADE_FAIL_GOLD(-26),
+    PROFILE_CANNON_UPGRADE_FAIL_PEARL(-27),
+    PROFILE_WHEEL_RESULT_SUCCESS(-28),
+    PROFILE_WHEEL_RESULT_OUT_TICKET(-29),
+    PROFILE_WHEEL_RESULT_FAIL(-30),
+    PROFILE_CLAIM_DAILY_BONUS_ALREADY(-31),
+    PROFILE_CLAIM_DAILY_BONUS_NO_ITEM(-32),
+    PROFILE_CLAIM_COLLECTION_PRIZE_FAIL(-33),
+    PROFILE_DONATE_SUCCESS(-34),
+    PROFILE_DONATE_LIST_FRIEND_FAIL(-35),
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL(-36),
+    PROFILE_DONATE_SEND_ITEMS_FAIL(-37),
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_SNS(-38),
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_OVER(-39),
+    PROFILE_DONATE_RECEIVE_ITEMS_FAIL_ALREADY(-40),
+    PROFILE_DONATE_SEND_ITEMS_FAIL_SNS(-41),
+    PROFILE_DONATE_SEND_ITEMS_FAIL_OVER(-42),
+    PROFILE_DONATE_SEND_ITEMS_FAIL_ALREADY(-43),
+    PROFILE_DONATE_SEND_ITEMS_FAIL_NO_DATA(-44),
+    PROFILE_ACCUMULATE_CLAIM_DUP(-45),
+    PROFILE_ACCUMULATE_CLAIM_INVALID(-46),
+    PROFILE_H3_RESULT_SUCCESS(-47),
+    PROFILE_H3_RESULT_OUT_MONEY(-48),
+    PROFILE_H3_RESULT_FAIL(-49),
+    UNRECOGNIZED(-1);
+
+    private final int value;
+
+    private ProfileResultCode(int n) {
+        this.value = n;
+    }
+
+    @Override
+    public int getNumber() {
+        if (value == -1) {
+          throw new java.lang.IllegalStateException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+    }
+
+    public static final ProfileResultCode valueOf(int tag) {
+        switch(tag) {
+            case 1: return PROFILE_CLAIM_INBOX_OK;
+            case 2: return PROFILE_UPDATE_OK;
+            case 3: return PROFILE_DAILY_QUEST_RECEIVE_OK;
+            case 4: return PROFILE_CANNON_UNLOCK_OK;
+            case 5: return PROFILE_CANNON_UPGRADE_OK;
+            case 6: return PROFILE_CLAIM_DAILY_BONUS_OK;
+            case 7: return PROFILE_DAILY_BONUS_OK;
+            case 8: return PROFILE_CLAIM_COLLECTION_PRIZE_OK;
+            case 9: return PROFILE_ACCUMULATE_CLAIM_OK;
+            case -1: return PROFILE_CLAIM_INBOX_FAIL;
+            case -2: return PROFILE_UPDATE_FAIL;
+            case -3: return PROFILE_FACEBOOK_EXIST;
+            case -4: return PROFILE_FACEBOOK_AUTHEN_ERROR;
+            case -5: return PROFILE_FACEBOOK_DIFFERENT;
+            case -6: return PROFILE_USERNAME_INVALID;
+            case -7: return PROFILE_USERNAME_EXIST;
+            case -8: return PROFILE_USERNAME_ALREADY;
+            case -9: return PROFILE_FRIENDLIST_ACTION_FAILED;
+            case -10: return PROFILE_FRIENDLIST_TOTAL_FULL;
+            case -11: return PROFILE_FRIENDLIST_DAILY_FULL;
+            case -12: return PROFILE_FRIENDLIST_FRIEND_FULL;
+            case -13: return PROFILE_FRIENDLIST_FRIEND_ALREADY;
+            case -14: return PROFILE_DAILY_QUEST_RECEIVE_FAILED;
+            case -15: return PROFILE_GIFTCODE_RECEIVE_SUCCESS;
+            case -16: return PROFILE_GIFTCODE_RECEIVE_OUT_LIMIT;
+            case -17: return PROFILE_GIFTCODE_RECEIVE_NOT_AVAILABLE;
+            case -18: return PROFILE_GIFTCODE_RECEIVE_ALREADY_USED;
+            case -19: return PROFILE_CANNON_UNLOCK_FAIL_INVALID;
+            case -20: return PROFILE_CANNON_UNLOCK_FAIL_LEVEL;
+            case -21: return PROFILE_CANNON_UNLOCK_FAIL_GOLD;
+            case -22: return PROFILE_CANNON_UNLOCK_FAIL_PEARL;
+            case -23: return PROFILE_CANNON_UNLOCK_FAIL_BASE;
+            case -24: return PROFILE_CANNON_UPGRADE_FAIL_INVALID;
+            case -25: return PROFILE_CANNON_UPGRADE_FAIL_LEVEL;
+            case -26: return PROFILE_CANNON_UPGRADE_FAIL_GOLD;
+            case -27: return PROFILE_CANNON_UPGRADE_FAIL_PEARL;
+            case -28: return PROFILE_WHEEL_RESULT_SUCCESS;
+            case -29: return PROFILE_WHEEL_RESULT_OUT_TICKET;
+            case -30: return PROFILE_WHEEL_RESULT_FAIL;
+            case -31: return PROFILE_CLAIM_DAILY_BONUS_ALREADY;
+            case -32: return PROFILE_CLAIM_DAILY_BONUS_NO_ITEM;
+            case -33: return PROFILE_CLAIM_COLLECTION_PRIZE_FAIL;
+            case -34: return PROFILE_DONATE_SUCCESS;
+            case -35: return PROFILE_DONATE_LIST_FRIEND_FAIL;
+            case -36: return PROFILE_DONATE_RECEIVE_ITEMS_FAIL;
+            case -37: return PROFILE_DONATE_SEND_ITEMS_FAIL;
+            case -38: return PROFILE_DONATE_RECEIVE_ITEMS_FAIL_SNS;
+            case -39: return PROFILE_DONATE_RECEIVE_ITEMS_FAIL_OVER;
+            case -40: return PROFILE_DONATE_RECEIVE_ITEMS_FAIL_ALREADY;
+            case -41: return PROFILE_DONATE_SEND_ITEMS_FAIL_SNS;
+            case -42: return PROFILE_DONATE_SEND_ITEMS_FAIL_OVER;
+            case -43: return PROFILE_DONATE_SEND_ITEMS_FAIL_ALREADY;
+            case -44: return PROFILE_DONATE_SEND_ITEMS_FAIL_NO_DATA;
+            case -45: return PROFILE_ACCUMULATE_CLAIM_DUP;
+            case -46: return PROFILE_ACCUMULATE_CLAIM_INVALID;
+            case -47: return PROFILE_H3_RESULT_SUCCESS;
+            case -48: return PROFILE_H3_RESULT_OUT_MONEY;
+            case -49: return PROFILE_H3_RESULT_FAIL;
+            default: return UNRECOGNIZED;
+        }
+    }
+}

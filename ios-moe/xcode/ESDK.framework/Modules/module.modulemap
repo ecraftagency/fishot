@@ -1,0 +1,11 @@
+framework module ESDK {
+  umbrella header "ESDK.h"
+
+  export *
+  module * { export * }
+}
+
+module ESDK.Swift {
+    header "ESDK-Swift.h"
+    requires objc
+}
