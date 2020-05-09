@@ -3,6 +3,7 @@ package com.fruit.views;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.fruit.AssetLoader;
+import com.fruit.Const;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.views.components.EndGamePanel;
 import com.fruit.views.components.TimeBar;
@@ -35,7 +36,7 @@ public class TimingUILayer extends Group implements ThrowEngine.ThrowListener {
 
   @Override
   public void engineStop() {
-    AssetLoader.getSound("endgame").play();
+    AssetLoader.getSound("endgame").play(Const.PREFS.VOLUME);
     Object ctxObj = ThrowEngine.inst().getContextInfo();
     if (ctxObj instanceof ThrowEngine.TimingCtxInfo) {
       ThrowEngine.TimingCtxInfo ctxInfo = (ThrowEngine.TimingCtxInfo)ctxObj;

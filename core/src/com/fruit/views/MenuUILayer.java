@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.fruit.AssetLoader;
 import com.fruit.FruitGame;
 import com.fruit.pool_objects.Fruit;
+import com.fruit.screens.PartnerScreen;
 import com.fruit.views.components.SliceButton;
 
 public class MenuUILayer extends Group implements SwipeRenderer.SwipeListener {
@@ -31,12 +32,20 @@ public class MenuUILayer extends Group implements SwipeRenderer.SwipeListener {
   private               SliceButton     timingButton;
   private               SliceButton     sliceButton;
 
-  private static final  float           titlePadTop         = 250;
-  private static final  float           buttonPadBottom     = 70;
-  private static final  float           titleScl            = 0.7f;
-  private static final  float           buttonScl           = 0.6f;
+  private               SliceButton     wheelButton;
+
+
+  private static final  float           buttonPadBottom     = 20;
   private static final  float           buttonSpace         = 320;
-  private static final  float           selectModePadUp     = 300;
+  private static final  float           buttonScl           = 0.6f;
+
+  private static final  float           titlePadTop         = 330;
+  private static final  float           titleScl            = 0.7f;
+  private static final  float           selectModePadUp     = 380;
+
+  private static final  float           miniButtonPadTop    = 250;
+  private static final  float           miniButtonPadRight  = 250f;
+  private static final  float           miniButtonScl       = 0.5f;
 
   public MenuUILayer() {
     TextureRegion tg = AssetLoader.getTextureRegion(titleKey);
@@ -53,24 +62,24 @@ public class MenuUILayer extends Group implements SwipeRenderer.SwipeListener {
     addActor(title);
 
     queueButton = new SliceButton(2, queueButtonTxt,
-            () -> FruitGame.inst.setScreen(FruitGame.queueGameScreen));
+            () -> FruitGame.inst.setScreen(FruitGame.queueGameScreen), true);
     queueButton.setScale(buttonScl);
     addActor(queueButton);
 
 
     classicButton = new SliceButton(1, ClassicButtonTxt,
-            () -> FruitGame.inst.setScreen(FruitGame.classicGameScreen));
+            () -> FruitGame.inst.setScreen(FruitGame.classicGameScreen), true);
     classicButton.setScale(buttonScl);
     addActor(classicButton);
 
 
     timingButton = new SliceButton(3, timingButtonTxt,
-            () -> FruitGame.inst.setScreen(FruitGame.timingGameScreen));
+            () -> FruitGame.inst.setScreen(FruitGame.timingGameScreen), true);
     timingButton.setScale(buttonScl);
     addActor(timingButton);
 
     sliceButton = new SliceButton(0, sliceButtonTxt,
-            () -> FruitGame.inst.setScreen(FruitGame.sliceGameScreen));
+            () -> FruitGame.inst.setScreen(FruitGame.sliceGameScreen), true);
     sliceButton.setScale(buttonScl);
     addActor(sliceButton);
 
@@ -80,10 +89,12 @@ public class MenuUILayer extends Group implements SwipeRenderer.SwipeListener {
     selectModeLbl = new Label(selectModeTxt, ls);
     addActor(selectModeLbl);
 
-//    Leaderboard ldb = new Leaderboard();
-//    addActor(ldb);
-//    ldb.setPosition(200, 200);
-//    ldb.setScale(1.6f);
+    wheelButton = new SliceButton(Fruit.WHEEL, "", () -> {
+      FruitGame.partnerScreen.setViewOption(PartnerScreen.WHEEL_VIEW);
+      FruitGame.inst.setScreen(FruitGame.partnerScreen);
+      }, false);
+    wheelButton.setScale(miniButtonScl);
+    addActor(wheelButton);
 
     setDebug(FruitGame.DEBUG);
   }
@@ -106,6 +117,8 @@ public class MenuUILayer extends Group implements SwipeRenderer.SwipeListener {
     x = (getWidth() - selectModeLbl.getWidth())/2;
     y = getHeight() - selectModePadUp;
     selectModeLbl.setPosition(x, y);
+
+    wheelButton.setPosition(getWidth() - miniButtonPadRight, getHeight() - miniButtonPadTop);
   }
 
   @Override

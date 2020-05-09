@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.fruit.screens.ClassicGameScreen;
+import com.fruit.screens.PartnerScreen;
 import com.fruit.screens.QueueGameScreen;
 import com.fruit.screens.SliceGameScreen;
 import com.fruit.screens.StartScreen;
@@ -28,6 +29,7 @@ public class FruitGame extends Game {
   public static QueueGameScreen     queueGameScreen;
   public static TimingGameScreen    timingGameScreen;
   public static SliceGameScreen     sliceGameScreen;
+  public static PartnerScreen       partnerScreen;
 
   public static FruitGame inst;
 
@@ -50,6 +52,7 @@ public class FruitGame extends Game {
     queueGameScreen       = new QueueGameScreen();
     timingGameScreen      = new TimingGameScreen();
     sliceGameScreen       = new SliceGameScreen();
+    partnerScreen         = new PartnerScreen();
     setScreen(startScreen);
 
     inst = this;

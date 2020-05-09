@@ -41,7 +41,6 @@ public class Fishot extends ApplicationAdapter {
 
 	private Websocket ws;
 	private SpriteBatch batch;
-	private Texture img;
 	private BitmapFont font12;
 	private Timer runner;
 	private int sendC = 0;
@@ -49,7 +48,6 @@ public class Fishot extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
 		runner = new Timer();
 		final Fishot _this = this;
 		ws.addListener(new Websocket.Listener() {
@@ -161,17 +159,14 @@ public class Fishot extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
 		font12.draw(batch, "send count: " + sendC, 200, 200);
 		font12.draw(batch, "rev count: " + revC, 200, 400);
-
 		batch.end();
 	}
 
 	@Override
 	public void dispose () {
 		batch.dispose();
-		img.dispose();
 	}
 
 	public static HashMap<Integer, String> cases = new HashMap<>();

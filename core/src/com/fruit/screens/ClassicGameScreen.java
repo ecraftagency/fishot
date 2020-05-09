@@ -4,7 +4,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.fruit.Const;
 import com.fruit.FruitGame;
+import com.fruit.controllers.composite.ItemAdapter;
 import com.fruit.controllers.ClassicMode;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.views.ClassicUILayer;
@@ -54,11 +56,17 @@ public class ClassicGameScreen implements Screen {
     FruitGame.renderer.addActor(upBoundEFRenderer);
     FruitGame.renderer.addActor(classicUiLayer);
 
-
     ThrowEngine.inst().clearListeners();
     ThrowEngine.inst().addThrowListener(fruitLayer);
     ThrowEngine.inst().addThrowListener(classicUiLayer);
     ThrowEngine.inst().setSpawnHandler(modeLogic);
+
+
+    ThrowEngine.inst().clearItems();
+    ThrowEngine.Item ice = new ItemAdapter(Const.ITEM.ICE);
+    ice.addResolver(fruitLayer);
+    ThrowEngine.inst().setItem(ice);
+
     ThrowEngine.inst().reset();
   }
 

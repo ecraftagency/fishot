@@ -5,12 +5,12 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
 import com.fruit.controllers.composite.SimpleScoreRecorder;
 import com.fruit.controllers.spawners.SliceSpawn;
-import com.fruit.controllers.spawners.composite.CurvePath;
-import com.fruit.controllers.spawners.composite.MixPath;
-import com.fruit.controllers.spawners.composite.WavePath;
+import com.fruit.controllers.spawners.paths.CurvePath;
+import com.fruit.controllers.spawners.paths.MixPath;
+import com.fruit.controllers.spawners.paths.WavePath;
 
 import static com.fruit.controllers.ThrowEngine.*;
-import static com.fruit.controllers.Const.*;
+import static com.fruit.Const.*;
 
 public class SliceMode implements ModeLogic<SliceCtxInfo> {
   private static final Array<Integer>   fruitTypes      = new Array<>();
@@ -61,7 +61,7 @@ public class SliceMode implements ModeLogic<SliceCtxInfo> {
     ctxInfo   = new SliceCtxInfo();
     spawner   = new SliceSpawn(sliceSpawnInfo);
 
-    scoreRecorder         = new SimpleScoreRecorder(Const.PREF_KEYS.SLICE_HIGH_SCORE);
+    scoreRecorder         = new SimpleScoreRecorder(PREF_KEYS.SLICE_HIGH_SCORE);
     nextSpawn             = 1;
     spawnInput            = new SpawnInput();
     spawnInput.waveID     = -1;

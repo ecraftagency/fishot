@@ -1,4 +1,4 @@
-package com.fruit.controllers;
+package com.fruit;
 
 public class Const {
   public static class CLASSIC {
@@ -144,9 +144,28 @@ public class Const {
   }
 
   public static class PREF_KEYS {
-    public static String  CLASSIC_HIGH_SCORE                = "classic_high_score";
-    public static String  QUEUE_HIGH_SCORE                  = "queue_high_score";
-    public static String  TIMING_HIGH_SCORE                 = "timing_high_score";
-    public static String  SLICE_HIGH_SCORE                  = "slice_high_score";
+    public static String        CLASSIC_HIGH_SCORE          = "classic_high_score";
+    public static String        QUEUE_HIGH_SCORE            = "queue_high_score";
+    public static String        TIMING_HIGH_SCORE           = "timing_high_score";
+    public static String        SLICE_HIGH_SCORE            = "slice_high_score";
+  }
+
+  public static class PREFS {
+    public static float VOLUME                              = 1.0f;
+  }
+
+  public static class ITEM {
+    public static int           ICE                         = 0;
+    public static float         ICE_SCALE_DURATION          = 3f;
+    public static float         ICE_SCALE                   = 0.1f;
+    public static float         ICE_TIME_OUT                = 30;
+
+
+    public static int           TIME                        = 1;
+    public static float         TIME_ADDED                  = 0.1f;
+  }
+
+  public static class WHEEL {
+
   }
 }

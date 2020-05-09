@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import com.fruit.Const;
 import com.fruit.FruitGame;
 import static com.fruit.controllers.ThrowEngine.*;
 
@@ -15,7 +16,7 @@ import com.fruit.pool_objects.Fruit;
 import com.fruit.pool_objects.IPAction;
 
 public class FruitLayer extends Group
-implements SwipeRenderer.SwipeListener, ThrowListener {
+implements SwipeRenderer.SwipeListener, ThrowListener, ItemResolver {
   private static       Vector2  point     = new Vector2(0,0);
 
   private static final float    FRUIT_SCALE           = 0.5f;
@@ -24,7 +25,8 @@ implements SwipeRenderer.SwipeListener, ThrowListener {
   private static final float    TIME_SCALE_DURATION   = 3f;
 
   private Array<EventListener>  eventListeners;
-  private float                 speed           = 1;
+  private float                 speed                 = 1;
+  private float                 timeScaleDuration     = TIME_SCALE_DURATION;
 
   public FruitLayer() {
     setHeight(FruitGame.renderer.getHeight());
@@ -62,7 +64,7 @@ implements SwipeRenderer.SwipeListener, ThrowListener {
     }
 
     time_scale_counter += delta;
-    if (time_scale_counter >= TIME_SCALE_DURATION)
+    if (time_scale_counter >= timeScaleDuration)
       speed = 1;
     super.act(delta*speed);
   }
@@ -140,6 +142,15 @@ implements SwipeRenderer.SwipeListener, ThrowListener {
   @Override
   public void customEvent(Object ctxData) {
 
+  }
+
+  @Override
+  public void onItemCast(int itemID) {
+    if (itemID == Const.ITEM.ICE) {
+      speed = Const.ITEM.ICE_SCALE;
+      time_scale_counter = 0;
+      inst().timeScale(speed, Const.ITEM.ICE_SCALE_DURATION);
+    }
   }
 
   /************************************************************************************************/

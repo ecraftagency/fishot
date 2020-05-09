@@ -5,10 +5,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
 import com.fruit.controllers.composite.SimpleScoreRecorder;
 import com.fruit.controllers.spawners.QueueSpawn;
-import com.fruit.controllers.spawners.composite.MixPath;
+import com.fruit.controllers.spawners.paths.MixPath;
 import com.fruit.pool_objects.Fruit;
 import static com.fruit.controllers.ThrowEngine.*;
-import static com.fruit.controllers.Const.*;
+import static com.fruit.Const.*;
 
 public class QueueMode implements ModeLogic<ClassicCtxInfo> {
 

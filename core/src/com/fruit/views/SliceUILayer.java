@@ -3,6 +3,7 @@ package com.fruit.views;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import com.fruit.AssetLoader;
+import com.fruit.Const;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.views.components.EndGamePanel;
 import com.fruit.views.components.FruitRollerV;
@@ -60,7 +61,7 @@ public class SliceUILayer extends Group implements ThrowEngine.ThrowListener {
 
   @Override
   public void engineStop() {
-    AssetLoader.getSound("endgame").play();
+    AssetLoader.getSound("endgame").play(Const.PREFS.VOLUME);
     addActor(endgamePanel);
     Object obj = ThrowEngine.inst().getContextInfo();
     if(obj instanceof ThrowEngine.SliceCtxInfo) {
@@ -87,7 +88,7 @@ public class SliceUILayer extends Group implements ThrowEngine.ThrowListener {
         fruitRoller.addFruit(event.fruitPath);
       if (event.id == 1) { //invalid fruit hit
         fruitRoller.alert();
-        AssetLoader.getSound("alert").play();
+        AssetLoader.getSound("alert").play(Const.PREFS.VOLUME);
       }
       if (event.id == 2) { //next stage
         stagePanel.setStageNumber(event.nextStageNumber);
@@ -97,7 +98,7 @@ public class SliceUILayer extends Group implements ThrowEngine.ThrowListener {
       }
       if (event.id == 4) { //invalid swipe hit
         fruitRoller.alert();
-        AssetLoader.getSound("alert").play();
+        AssetLoader.getSound("alert").play(Const.PREFS.VOLUME);
       }
     }
   }

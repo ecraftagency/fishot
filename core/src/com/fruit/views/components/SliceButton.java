@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fruit.AssetLoader;
 import com.fruit.FruitGame;
+import com.fruit.Const;
 import com.fruit.pool_objects.Fruit;
 import com.fruit.pool_objects.IPAction;
 import com.fruit.views.SwipeRenderer;
@@ -21,6 +22,7 @@ import java.util.HashMap;
 public class SliceButton extends Group {
   static HashMap<Integer, TextureRegion> fruitLeftTex   = new HashMap<>();
   static HashMap<Integer, TextureRegion> fruitRightTex  = new HashMap<>();
+  static int N_ICON  = 5;
 
   Image holder;
   public Fruit fruit;
@@ -33,17 +35,19 @@ public class SliceButton extends Group {
   private static final float  fruitScl    = 0.7f;
   private static final float  textY       = -100f;
 
-  public SliceButton(int fruitID, String txt, SlashHandler slashHandler) {
+  public SliceButton(int fruitID, String txt, SlashHandler slashHandler, boolean haveHolder) {
 
     fruitLeftTex.put(0, AssetLoader.getTextureRegion("fruit_banana_left"));
     fruitLeftTex.put(1, AssetLoader.getTextureRegion("fruit_orange_left"));
     fruitLeftTex.put(2, AssetLoader.getTextureRegion("fruit_grape_left"));
     fruitLeftTex.put(3, AssetLoader.getTextureRegion("fruit_watermelon_left"));
+    fruitLeftTex.put(4, AssetLoader.getTextureRegion("fruit_wheel_left"));
 
     fruitRightTex.put(0, AssetLoader.getTextureRegion("fruit_banana_right"));
     fruitRightTex.put(1, AssetLoader.getTextureRegion("fruit_orange_right"));
     fruitRightTex.put(2, AssetLoader.getTextureRegion("fruit_grape_right"));
     fruitRightTex.put(3, AssetLoader.getTextureRegion("fruit_watermelon_right"));
+    fruitRightTex.put(4, AssetLoader.getTextureRegion("fruit_wheel_right"));
 
     this.slashHandler = slashHandler;
     click = AssetLoader.getSound(clickSndKey);
@@ -62,13 +66,14 @@ public class SliceButton extends Group {
         return false;
       }
     });
+    holder.setVisible(haveHolder);
     addActor(holder);
 
     setWidth(holder.getWidth());
     setHeight(holder.getHeight());
     setOrigin(Align.center);
 
-    fruit = Fruit.obtain(fruitID%Fruit.N_FRUIT);
+    fruit = Fruit.obtain(fruitID%N_ICON);
     fruit.setScale(fruitScl);
     fruit.setOrigin(Align.center);
     addActor(fruit);
@@ -144,10 +149,9 @@ public class SliceButton extends Group {
     })));
 
     addAction(Actions.delay(1, Actions.run(() -> {
-      holder.clearActions();
       slashHandler.onSlash();
     })));
-    AssetLoader.getSound("slice_banana").play();
+    AssetLoader.getSound("slice_banana").play(Const.PREFS.VOLUME);
   }
 
   @Override

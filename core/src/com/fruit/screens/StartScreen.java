@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.fruit.AssetLoader;
 import com.fruit.FruitGame;
+import com.fruit.Const;
 import com.fruit.views.MenuUILayer;
 import com.fruit.views.SwipeRenderer;
 
@@ -13,7 +14,7 @@ public class StartScreen implements Screen {
   private                   Image backGround;
   private static final      float             BASE_RATIO        = 1280f/720f;
   private                   boolean           hadResized        = false;
-  private MenuUILayer modeMenu;
+  private                   MenuUILayer       modeMenu;
   private                   SwipeRenderer     swipeRenderer;
 
 
@@ -32,7 +33,7 @@ public class StartScreen implements Screen {
     FruitGame.renderer.addActor(modeMenu);
     FruitGame.renderer.addListener(swipeRenderer);
     swipeRenderer.addSwipeListener(modeMenu);
-    AssetLoader.getSound("start").play();
+    AssetLoader.getSound("start").play(Const.PREFS.VOLUME);
   }
 
   @Override

@@ -39,8 +39,8 @@ public class Wheel extends Group {
 
   private static final  boolean                      RENDER_ITEM         = true;             //có vẽ icon item hay ko
   private static final  boolean                      RENDER_POINTER      = true;             //có vẽ icon  hay ko
-  private static final  float                        ITEM_SCALE          = 1;                 //scale của whell item
-  private static final  float                        ITEM_FLOAT          = 0.6f;              //vẽ item gần hay xa tâm tròn
+  private static final  float                        ITEM_SCALE          = 0.25f;                 //scale của whell item
+  private static final  float                        ITEM_FLOAT          = 0.66f;              //vẽ item gần hay xa tâm tròn
   private static final  float                        DOT_FLOAT           = 0.88f;             //vẽ text số lượng gần hay xa tâm tròn
   private static final  boolean                      RENDER_TEXT         = true;              //có vẽ text số lượng hay ko
   private static final  boolean                      POLAR_TEXT_RENDER   = false;              //true: vẽ text phóng từ tâm, false: vẽ xung quanh rìa đường tròn
@@ -99,6 +99,8 @@ public class Wheel extends Group {
       wheel.setOrigin(wheel.getWidth()/2, wheel.getHeight()/2);
       wheel.addListener(WheelDragListener.inst());
       addActor(wheel);
+      setWidth(wheel.getWidth());
+      setHeight(wheel.getHeight());
     }
     catch (Exception e) {
       muteDrawing = true;

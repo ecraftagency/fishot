@@ -1,4 +1,4 @@
-package com.fruit.controllers.spawners.composite;
+package com.fruit.controllers.spawners.paths;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Align;

@@ -6,11 +6,11 @@ import com.badlogic.gdx.utils.Queue;
 import com.fruit.controllers.composite.SimpleComboCalc;
 import com.fruit.controllers.composite.SimpleScoreRecorder;
 import com.fruit.controllers.spawners.LinearSpawn;
-import com.fruit.controllers.spawners.composite.CurvePath;
-import com.fruit.controllers.spawners.composite.MixPath;
-import com.fruit.controllers.spawners.composite.WavePath;
+import com.fruit.controllers.spawners.paths.CurvePath;
+import com.fruit.controllers.spawners.paths.MixPath;
+import com.fruit.controllers.spawners.paths.WavePath;
 import com.fruit.pool_objects.Fruit;
-import static com.fruit.controllers.Const.*;
+import static com.fruit.Const.*;
 import static com.fruit.controllers.ThrowEngine.*;
 
 @SuppressWarnings("unused")

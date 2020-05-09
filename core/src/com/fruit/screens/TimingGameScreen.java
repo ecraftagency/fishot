@@ -3,9 +3,11 @@ package com.fruit.screens;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.fruit.AssetLoader;
+import com.fruit.Const;
 import com.fruit.FruitGame;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.controllers.TimingMode;
+import com.fruit.controllers.composite.ItemAdapter;
 import com.fruit.pool_objects.Fruit;
 import com.fruit.views.EffectLayer;
 import com.fruit.views.FruitLayer;
@@ -23,7 +25,7 @@ public class TimingGameScreen implements Screen {
   private static final  float                     BASE_RATIO            = 1280f/720f;
   private static final  String                    bgKey                 = "fruit_bg";
   private               boolean                   hadResized            = false;
-  private               ThrowEngine.ModeLogic     modeLogic;
+  private               TimingMode                modeLogic;
 
   public TimingGameScreen() {
     swipeRenderer             = new SwipeRenderer();
@@ -69,6 +71,12 @@ public class TimingGameScreen implements Screen {
     ThrowEngine.inst().addThrowListener(fruitLayer);
     ThrowEngine.inst().addThrowListener(uiRenderer);
     ThrowEngine.inst().setSpawnHandler(modeLogic);
+
+    ThrowEngine.inst().clearItems();
+    ThrowEngine.Item time = new ItemAdapter(Const.ITEM.TIME);
+    time.addResolver(modeLogic);
+    ThrowEngine.inst().setItem(time);
+
     ThrowEngine.inst().reset();
   }
 

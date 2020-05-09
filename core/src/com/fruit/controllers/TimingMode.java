@@ -4,13 +4,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
 import com.fruit.controllers.composite.SimpleScoreRecorder;
 import com.fruit.controllers.spawners.ConstantSpawn;
-import com.fruit.controllers.spawners.composite.MixPath;
-import com.fruit.controllers.spawners.composite.WavePath;
-import static com.fruit.controllers.Const.*;
+import com.fruit.controllers.spawners.paths.MixPath;
+import com.fruit.controllers.spawners.paths.WavePath;
+import static com.fruit.Const.*;
 
 import static com.fruit.controllers.ThrowEngine.*;
 
-public class TimingMode implements ModeLogic<TimingCtxInfo> {
+public class TimingMode implements ModeLogic<TimingCtxInfo>, ItemResolver {
 
   private ThrowEngine                           engine;
   private SpawnLogic                            spawner;
@@ -91,5 +91,11 @@ public class TimingMode implements ModeLogic<TimingCtxInfo> {
     scoreRecorder.recordScore(score);
     score = 0;
     spawner.reset();
+  }
+
+  @Override
+  public void onItemCast(int itemID) {
+    if (itemID == ITEM.TIME)
+      timeOut += 20;
   }
 }

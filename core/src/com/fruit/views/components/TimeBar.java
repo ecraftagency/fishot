@@ -1,9 +1,12 @@
 package com.fruit.views.components;
 
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.fruit.AssetLoader;
+import com.fruit.Const;
 import com.fruit.FruitGame;
 import com.fruit.controllers.ThrowEngine;
 
@@ -54,6 +57,13 @@ public class TimeBar extends Group {
     x = (getWidth() - timer.getWidth())/2;
     y = (getHeight() - timer.getHeight())/2;
     timer.setPosition(x, y);
+    addListener(new ClickListener() {
+      @Override
+      public void clicked(InputEvent event, float x, float y) {
+        ThrowEngine.inst().useItem(Const.ITEM.TIME);
+        super.clicked(event, x, y);
+      }
+    });
   }
 
 

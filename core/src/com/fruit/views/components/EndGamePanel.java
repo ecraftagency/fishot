@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.fruit.AssetLoader;
+import com.fruit.Const;
 import com.fruit.FruitGame;
 import com.fruit.controllers.ThrowEngine;
 
@@ -75,7 +76,7 @@ public class EndGamePanel extends Group {
     homeIcon.addListener(new ClickListener() {
       @Override
       public void clicked(InputEvent event, float x, float y) {
-        buttonClick.play();
+        buttonClick.play(Const.PREFS.VOLUME);
         Group p = getParent();
         p.removeActor(_this);
         FruitGame.inst.setScreen(FruitGame.startScreen);

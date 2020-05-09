@@ -2,7 +2,9 @@ package com.fruit.controllers;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
-import static com.fruit.controllers.Const.*;
+import java.util.HashMap;
+
+import static com.fruit.Const.*;
 
 @SuppressWarnings("unused")
 public class ThrowEngine {
@@ -13,6 +15,24 @@ public class ThrowEngine {
     void engineStop();
     void comboOccur(int comboCount);
     void customEvent(Object ctxData);
+  }
+
+  public interface ItemManager {
+    void step(float dt); //<- item have countdown
+    void onSessionStart();
+    void useItem(int itemID);
+    int ICE   = 1;
+    int HINT  = 2;
+  }
+
+  public interface ItemResolver {
+    void onItemCast(int itemID);
+  }
+
+  public interface Item {
+    int   getID();
+    void  cast();
+    void  addResolver(ItemResolver resolver);
   }
 
   public interface ComboLogic {
@@ -48,10 +68,10 @@ public class ThrowEngine {
   }
 
   public interface ModeLogic<T> {
-    void step(float delta, float sclDelta);
-    void onHit(HitContext ctx);
-    void onUnderBound(HitContext ctx);
-    T    getContextInfo();
+    void  step(float delta, float sclDelta);
+    void  onHit(HitContext ctx);
+    void  onUnderBound(HitContext ctx);
+    T     getContextInfo();
     void reset();
   }
 
@@ -76,8 +96,23 @@ public class ThrowEngine {
   private                 float                   timeScaleCounter    = 0;
   private                 float                   timeScaleDuration   = 0;
   private                 int                     state               = RUNNING;
+  private                 HashMap<Integer, Item>  items;
+  public void setItem(Item item) {
+    items.put(item.getID(), item);
+  }
+
+  public void useItem(int itemID) {
+    Item item = items.get(itemID);
+    if (item != null)
+      item.cast();
+  }
+
+  public void clearItems() {
+    items.clear();
+  }
 
   private ThrowEngine() {
+    items             = new HashMap<>();
     throwListeners    = new Array<>();
     spawnHandler      = new ModeLogic() {
       @Override
@@ -294,23 +329,28 @@ public class ThrowEngine {
 
   /************************************************************************************************/
   //context data model
+
+  //classic mode
   public static class ClassicCtxInfo {
     public int waveScore;
     public int highScore;
     public int remainLife;
   }
 
-  public static class OrderCtxInfo {
+  //queueMoce
+  public static class QueueCtxInfo {
     public int waveScore;
     public int highScore;
   }
 
+  //Timing mode
   public static class TimingCtxInfo {
     public float secondLeft;
     public int   score;
     public int   highScore;
   }
 
+  //slice mode
   public static class SliceCtxInfo {
     public int    currentStage;
     public int    bestStage;

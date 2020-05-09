@@ -18,13 +18,6 @@ fruit_banana_left
   orig: 150, 300
   offset: 0, 0
   index: -1
-fruit_banana_right
-  rotate: false
-  xy: 1838, 1279
-  size: 150, 300
-  orig: 150, 300
-  offset: 0, 0
-  index: -1
 fruit_banana_splash
   rotate: false
   xy: 770, 914
@@ -69,21 +62,14 @@ fruit_endgame_board
   index: -1
 fruit_grape
   rotate: false
-  xy: 1439, 53
+  xy: 1741, 53
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 fruit_grape_left
   rotate: false
-  xy: 1755, 1736
-  size: 150, 300
-  orig: 150, 300
-  offset: 0, 0
-  index: -1
-fruit_grape_right
-  rotate: false
-  xy: 1876, 675
+  xy: 530, 255
   size: 150, 300
   orig: 150, 300
   offset: 0, 0
@@ -125,7 +111,7 @@ fruit_ice
   index: -1
 fruit_icegrape
   rotate: false
-  xy: 1741, 53
+  xy: 1439, 53
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
@@ -146,14 +132,14 @@ fruit_orange
   index: -1
 fruit_orange_left
   rotate: false
-  xy: 530, 255
+  xy: 985, 210
   size: 150, 300
   orig: 150, 300
   offset: 0, 0
   index: -1
 fruit_orange_right
   rotate: false
-  xy: 1686, 1277
+  xy: 1838, 1279
   size: 150, 300
   orig: 150, 300
   offset: 0, 0
@@ -209,7 +195,7 @@ fruit_watermelon
   index: -1
 fruit_watermelon_right
   rotate: false
-  xy: 985, 210
+  xy: 1686, 1277
   size: 150, 300
   orig: 150, 300
   offset: 0, 0
@@ -219,6 +205,20 @@ fruit_watermelon_splash
   xy: 1284, 1177
   size: 400, 400
   orig: 400, 400
+  offset: 0, 0
+  index: -1
+fruit_wheel_left
+  rotate: false
+  xy: 1755, 1736
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_wheel_right
+  rotate: false
+  xy: 1876, 675
+  size: 150, 300
+  orig: 150, 300
   offset: 0, 0
   index: -1
 fruit_zero
@@ -234,51 +234,79 @@ size: 1024,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+fruit_banana_right
+  rotate: false
+  xy: 829, 67
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
 fruit_crown_icon
   rotate: false
-  xy: 154, 37
+  xy: 686, 396
   size: 164, 113
   orig: 164, 113
   offset: 0, 0
   index: -1
+fruit_grape_right
+  rotate: false
+  xy: 304, 2
+  size: 150, 300
+  orig: 150, 300
+  offset: 0, 0
+  index: -1
+fruit_ice_cube
+  rotate: false
+  xy: 852, 369
+  size: 140, 140
+  orig: 140, 140
+  offset: 0, 0
+  index: -1
 fruit_icon
   rotate: false
-  xy: 154, 152
+  xy: 677, 244
   size: 150, 150
   orig: 150, 150
   offset: 0, 0
   index: -1
 fruit_one
   rotate: false
-  xy: 335, 259
+  xy: 2, 343
   size: 340, 82
   orig: 340, 82
   offset: 0, 0
   index: -1
 fruit_three
   rotate: false
-  xy: 677, 343
+  xy: 344, 427
   size: 340, 82
   orig: 340, 82
   offset: 0, 0
   index: -1
 fruit_two
   rotate: false
-  xy: 335, 343
+  xy: 2, 427
   size: 340, 82
   orig: 340, 82
   offset: 0, 0
   index: -1
 fruit_watermelon_left
   rotate: false
-  xy: 2, 2
+  xy: 456, 2
   size: 150, 300
   orig: 150, 300
   offset: 0, 0
   index: -1
+fruit_wheel
+  rotate: false
+  xy: 2, 41
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
 score_pane
   rotate: false
-  xy: 2, 304
+  xy: 344, 304
   size: 331, 121
   orig: 331, 121
   offset: 0, 0

@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
+import com.fruit.Const;
 import com.fruit.swipe.simplify.ResolverRadialChaikin;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -90,7 +91,7 @@ public class SwipeHandler extends DragListener {
 			if (acc >= 300) {
 				pointCount = 0;
 				int i = MathUtils.random(minNSound, maxNSound);
-				swipe[i].play();
+				swipe[i].play(Const.PREFS.VOLUME);
 				acc = 0;
 			}
 			else {

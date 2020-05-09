@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.fruit.FruitGame;
+import com.fruit.Const;
 import com.fruit.pool_objects.Fruit;
 import com.fruit.pool_objects.IPAction;
 import com.fruit.AssetLoader;
@@ -112,7 +113,7 @@ public class EffectLayer extends Group implements EventListener {
   @Override
   public void onOutOfBound(Fruit fruit) {
     if (fruit.getType() < Fruit.N_FRUIT)
-      softFail.play();
+      softFail.play(Const.PREFS.VOLUME);
   }
 
   public void setFruitHitBehavior(HitBehavior fruitHitBehavior) {
@@ -220,7 +221,7 @@ public class EffectLayer extends Group implements EventListener {
         splashEffect.setPosition(x, y);
         holder.addActor(splashEffect);
         renderParts(fruit, ctx);
-        slice[fruit.getType()%Fruit.N_FRUIT].play();
+        slice[fruit.getType()%Fruit.N_FRUIT].play(Const.PREFS.VOLUME);
       }
     }
 
@@ -297,7 +298,7 @@ public class EffectLayer extends Group implements EventListener {
       float angle = ctx.swipeDirection.angle()%180;
       clone.setRotation(angle);
       holder.addActor(clone);
-      slice[fruit.getType()%Fruit.N_FRUIT].play();
+      slice[fruit.getType()%Fruit.N_FRUIT].play(Const.PREFS.VOLUME);
 
       clone.addAction(Actions.delay(DELAY, Actions.run(() -> {
         TextureRegion tg    = splashText.get(clone.getType());
@@ -356,7 +357,7 @@ public class EffectLayer extends Group implements EventListener {
 
       EffectLayer efr = (EffectLayer)holder;
       efr.animations.add(animCtx);
-      explosion.play();
+      explosion.play(Const.PREFS.VOLUME);
     }
   }
 
@@ -374,7 +375,7 @@ public class EffectLayer extends Group implements EventListener {
     public void addHitEffect(Fruit fruit, SwipeRenderer.SwipeContext ctx) {
 
       int i = MathUtils.random(0, 2);
-      iceSound[i].play();
+      iceSound[i].play(Const.PREFS.VOLUME);
     }
   }
 

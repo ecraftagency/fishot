@@ -1,4 +1,4 @@
-package com.fruit.controllers.spawners.composite;
+package com.fruit.controllers.spawners.paths;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
@@ -7,7 +7,7 @@ import com.fruit.FruitGame;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.pool_objects.Fruit;
 
-import static com.fruit.controllers.Const.*;
+import static com.fruit.Const.*;
 
 public class MixPath implements ThrowEngine.Path {
   int                             spawned             = 0;

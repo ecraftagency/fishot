@@ -3,7 +3,7 @@ package com.fruit.controllers.composite;
 import com.badlogic.gdx.utils.Array;
 import com.fruit.controllers.ThrowEngine;
 import java.util.HashMap;
-import static com.fruit.controllers.Const.*;
+import static com.fruit.Const.*;
 import static com.fruit.controllers.ThrowEngine.*;
 
 public class SimpleComboCalc implements ComboLogic {

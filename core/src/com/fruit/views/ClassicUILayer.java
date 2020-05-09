@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.fruit.FruitGame;
+import com.fruit.Const;
 import com.fruit.controllers.ThrowEngine;
 import com.fruit.AssetLoader;
 import com.fruit.views.components.EndGamePanel;
@@ -107,7 +108,7 @@ public class ClassicUILayer extends Group implements ThrowEngine.ThrowListener {
 
   @Override
   public void engineStop() {
-    endgame.play();
+    endgame.play(Const.PREFS.VOLUME);
     ThrowEngine.ClassicCtxInfo ctx =
             (ThrowEngine.ClassicCtxInfo)ThrowEngine.inst().getContextInfo();
     endgamePanel.setScore(ctx.waveScore);
@@ -118,16 +119,16 @@ public class ClassicUILayer extends Group implements ThrowEngine.ThrowListener {
   @Override
   public void comboOccur(int comboCount) {
     if (comboCount >= 5) {
-      combo[3].play();
+      combo[3].play(Const.PREFS.VOLUME);
     }
     else if (comboCount >= 4) {
-      combo[2].play();
+      combo[2].play(Const.PREFS.VOLUME);
     }
     else if (comboCount >= 3) {
-      combo[1].play();
+      combo[1].play(Const.PREFS.VOLUME);
     }
     else if (comboCount >= 2) {
-      combo[0].play();
+      combo[0].play(Const.PREFS.VOLUME);
     }
 
     Label.LabelStyle ls = new Label.LabelStyle();

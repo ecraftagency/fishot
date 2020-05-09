@@ -20,8 +20,9 @@ public class Fruit extends Actor implements Pool.Poolable {
   public  static final   int                            ORANGE          = 1;
   public  static final   int                            GRAPE           = 2;
   public  static final   int                            WATERMELON      = 3;
-  public  static final   int                            BOMB            = 4;
-  public  static final   int                            ICE             = 5;
+  public  static final   int                            WHEEL           = 4;
+  public  static final   int                            BOMB            = 5;
+  public  static final   int                            ICE             = 6;
   public  static final  float                           BOUNDING_SCALE  = 0.8f;
 
   private static final  HashMap<Integer, String>        FRUIT_KEY       = new HashMap<>();
@@ -45,8 +46,9 @@ public class Fruit extends Actor implements Pool.Poolable {
     FRUIT_KEY.put(1, "fruit_orange");
     FRUIT_KEY.put(2, "fruit_grape");
     FRUIT_KEY.put(3, "fruit_watermelon");
-    FRUIT_KEY.put(4, "fruit_bomb");
-    FRUIT_KEY.put(5, "fruit_icegrape");
+    FRUIT_KEY.put(4, "fruit_wheel");
+    FRUIT_KEY.put(5, "fruit_bomb");
+    FRUIT_KEY.put(6, "fruit_icegrape");
   }
 
   @Override

@@ -1,4 +1,4 @@
-package com.fruit.controllers.spawners.composite;
+package com.fruit.controllers.spawners.paths;
 
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Queue;
